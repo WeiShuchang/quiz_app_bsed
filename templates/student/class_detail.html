@@ -1,0 +1,125 @@
+{% extends "student/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+
+    <header class="site-header pb-0 mb-0 d-flex flex-column justify-content-center align-items-center " >
+        <div class="container">
+            <div class="row">
+    
+                <div class="col-lg-12 col-12 text-center">
+    
+                    <h2 class="mb-0">Welcome to {{ classroom.name }}!</h2>
+                </div>
+    
+            </div>
+        </div>
+    </header>
+
+
+
+<section class="classroom-detail-section section-padding pb-0 " id="section_2">
+    <div class="container">
+        <div class="row justify-content-center">
+
+            <div class="col-lg-10 col-12">
+               
+                <div class="row">
+                    <div class="col-lg-3 col-12">
+                        <div class="custom-block-icon-wrap">
+                            <div class="custom-block-image-wrap custom-block-image-detail-page">
+                                <img src="{% static "defaults/classroom.jpeg" %}" class="custom-block-image img-fluid" alt="Classroom Image">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-9 col-12">
+                        <div class="custom-block-info">
+                            <div class="custom-block-top d-flex mb-1">
+                                <small class="ms-auto">Classroom Code: <span class="badge">{{ classroom.code }}</span></small>
+                            </div>
+
+                            <h2 class="mb-2">{{ classroom.name }} </h2>
+
+                            <p>{{ classroom.description }}</p>
+
+                            <div class="profile-block profile-detail-block d-flex flex-wrap align-items-center mt-5">
+                                <div class="d-flex mb-3 mb-lg-0 mb-md-0">
+                                    <img src="{% static "defaults/default_account.jpg" %}" class="profile-block-image img-fluid" alt="Teacher Image">
+
+                                    <p>
+                                        <strong>{{ classroom.teacher.username }}</strong>
+                                      
+                                        Teacher
+                                    </p>
+                                </div>
+
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    
+
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="class-detail-section section-padding pb-0" id="section_2">
+    <div class="container">
+        <h2 class="mb-2 text-center py-4">Quizzes</h2>
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-12">
+               
+
+                <!-- Display Categories and Quizzes -->
+                {% for category in categories %}
+                
+                <div class="section-title-wrap mb-2">
+                    <h4 class="section-title">{{ category.name }}</h4> <!-- Classroom Name -->
+                </div>
+                <div class="category-section mb-5">
+                    <div class="row">
+                        {% for quiz in category.quizzes.all %}
+                        <div class="col-lg-4 col-12 mb-4">
+                            <div class="quiz-card custom-block">
+                                <div class="custom-block-image-wrap">
+                                    <a href="{% url 'quiz_detail_student' quiz.id %}">
+                                        <img src="{{ quiz.picture.url }}" class="custom-block-image img-fluid" alt="Quiz Image">
+                                    </a>
+                                </div>
+
+                                <div class="custom-block-info">
+                                    <h6 class="mb-2">
+                                        <a href="{% url 'quiz_detail_student' quiz.id %}">{{ quiz.title }}</a>
+                                    </h6>
+                                    <p class="quiz-description">{{ quiz.description }}</p>
+
+                                    <div class="quiz-meta d-flex justify-content-between mt-3">
+                                       
+                                        <span>Questions: {{ quiz.questions.count }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% empty %}
+                        <p>No quizzes available in this category.</p>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% empty %}
+                <p>No categories available for this classroom.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

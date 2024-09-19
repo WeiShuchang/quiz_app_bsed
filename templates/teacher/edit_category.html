@@ -1,0 +1,83 @@
+{% extends 'teacher/base.html' %}
+
+{% block title %}Edit Category{% endblock %}
+
+{% block content %}
+<div class="page-wrapper">
+    <!-- Page header -->
+    <div class="page-header d-print-none">
+        <div class="container-xl">
+            <div class="row g-2 align-items-center">
+                <div class="col">
+                    <div class="page-pretitle">
+                        Overview
+                    </div>
+                    <h2 class="page-title">
+                        Edit Category
+                    </h2>
+                </div>
+                <!-- Page title actions -->
+                <div class="col-auto ms-auto d-print-none">
+                    <div class="btn-list">
+                        <a href="{% url 'category_list' %}" class="btn btn-sm btn-secondary">
+                            Back to list
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Page body -->
+    <div class="page-body">
+        <div class="container-xl">
+            <form action="{% url 'edit_category' category.id %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label class="form-label" for="id_name">Category Name</label>
+                    <input type="text" id="id_name" name="name" class="form-control" placeholder="Enter category name" value="{{ category.name }}">
+                    {% if form.errors.name %}
+                        <div class="text-danger">{{ form.errors.name }}</div>
+                    {% endif %}
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="id_description">Description</label>
+                    <textarea id="id_description" name="description" class="form-control" placeholder="Enter description">{{ category.description }}</textarea>
+                    {% if form.errors.description %}
+                        <div class="text-danger">{{ form.errors.description }}</div>
+                    {% endif %}
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="id_picture">Picture</label>
+                    <input type="file" id="id_picture" name="picture" class="form-control">
+                    {% if category.picture %}
+                        <img src="{{ category.picture.url }}" alt="{{ category.name }}" width="50" class="mt-2">
+                    {% endif %}
+                    {% if form.errors.picture %}
+                        <div class="text-danger">{{ form.errors.picture }}</div>
+                    {% endif %}
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="id_class_assigned">Assigned Class</label>
+                    <select id="id_class_assigned" name="class_assigned" class="form-control">
+                        
+                        {% for class in classes %}
+                            <option value="{{ class.id }}" {% if class.id == category.class_assigned.id %}selected{% endif %}>{{ class.name }}</option>
+                        {% endfor %}
+                    </select>
+                    {% if form.errors.class_assigned %}
+                        <div class="text-danger">{{ form.errors.class_assigned }}</div>
+                    {% endif %}
+                </div>
+                <div class="modal-footer">
+                    <a href="{% url 'category_list' %}" class="btn btn-link link-secondary">
+                        Cancel
+                    </a>
+                    <button type="submit" class="btn btn-primary ms-auto">
+                        Save Changes
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

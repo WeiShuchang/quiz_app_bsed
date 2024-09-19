@@ -1,0 +1,78 @@
+{% extends 'teacher/base.html' %}
+
+{% block title %}Edit Class{% endblock %}
+
+{% block content %}
+<div class="container-xl">
+    <div class="page-header">
+        <h2>Edit Class - {{ class_instance.name }}</h2>
+    </div>
+
+    <!-- Display success and error messages -->
+    {% include "messages.html" %}
+
+    <div class="card">
+        <div class="card-body">
+            <form action="{% url 'edit_class' class_instance.id %}" method="POST">
+                {% csrf_token %}
+
+                <!-- Uneditable Class Code Field with Copy Button -->
+                <div class="mb-3">
+                    <label class="form-label" for="id_code">Class Code</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="id_code" value="{{ class_instance.code }}" disabled>
+                        <button type="button" class="btn btn-outline-secondary" id="copyCodeButton">Copy</button>
+                    </div>
+                    <small id="copyFeedback" class="form-text text-success d-none">Copied to clipboard!</small>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="id_name">Class Name</label>
+                    <input type="text" class="form-control" id="id_name" name="name" value="{{ form.name.value }}" placeholder="Enter class name">
+                    {% if form.name.errors %}
+                        <div class="text-danger">{{ form.name.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="id_description">Class Description</label>
+                    <textarea class="form-control" id="id_description" name="description" rows="4" placeholder="Enter class description">{{ form.description.value }}</textarea>
+                    {% if form.description.errors %}
+                        <div class="text-danger">{{ form.description.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="mt-4">
+                    <a href="{% url 'class_dashboard' %}" class="btn btn-secondary">Cancel</a>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    // JavaScript to Copy Class Code to Clipboard and Show Feedback
+    document.getElementById('copyCodeButton').addEventListener('click', function() {
+        const codeField = document.getElementById('id_code');
+        const copyButton = this;
+        const feedbackMessage = document.getElementById('copyFeedback');
+
+        // Copy text to clipboard
+        navigator.clipboard.writeText(codeField.value).then(function() {
+            // Change button text to "Copied"
+            copyButton.textContent = 'Copied';
+            // Show feedback message
+            feedbackMessage.classList.remove('d-none');
+
+            // Reset button text and hide feedback after 2 seconds
+            setTimeout(function() {
+                copyButton.textContent = 'Copy';
+                feedbackMessage.classList.add('d-none');
+            }, 5000);
+        }).catch(function(err) {
+            alert('Failed to copy class code: ' + err);
+        });
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,124 @@
+{% extends "teacher/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="page-header d-print-none mt-5">
+  <div class="container-xl">
+    <div class="row g-2 align-items-center">
+      <div class="col">
+        <h2 class="page-title">Quizzes by Class and Category</h2>
+      </div>
+      <!-- Page title actions -->
+      <div class="col-auto ms-auto d-print-none">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addQuizModal">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M12 5l0 14" />
+            <path d="M5 12l14 0" />
+          </svg>
+          Add Quiz
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-body">
+  <div class="container-xl">
+    {% include "messages.html" %}
+    <div class="row row-cards">
+      {% for class in classes %}
+      <div class="col-12 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-header bg-dark text-white">
+            <h3 class="card-title"> {{ class.name }}</h3>
+          </div>
+          <div class="card-body">
+            {% for category in class.categories.all %}
+            <div class="category-section my-3 p-3 border rounded shadow-sm" style="background-color: #f8f9fa;">
+              <div class="d-flex align-items-center mb-3">
+                <h4 class="category-title text-primary">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-book" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M4 19h16" />
+                    <path d="M4 5h16" />
+                    <path d="M4 5v14a3 3 0 0 0 3 3h10a3 3 0 0 0 3 -3v-14" />
+                    <path d="M12 5v14" />
+                  </svg>
+                 {{ category.name }}
+                </h4>
+              </div>
+              <div class="row row-cards">
+                {% for quiz in category.quizzes.all %}
+                <div class="col-sm-6 col-lg-3 mb-4">
+                  <div class="card card-sm h-100" style="background-color: {% cycle 'lightblue' 'lightgreen' 'lightpink' 'lightyellow' %};">
+                    <a href="#" class="d-block">
+                      {% if quiz.picture %}
+                        <img src="{{ quiz.picture.url }}" class="card-img-top" alt="{{ quiz.title }}">
+                      {% else %}
+                        <img src="{% static 'default-image.jpg' %}" class="card-img-top" alt="Default image">
+                      {% endif %}
+                    </a>
+                    <div class="card-body">
+                      <div class="d-flex align-items-center">
+                        <div>
+                          <div class="font-weight-bold"><h5>{{ quiz.title }}</h5></div>
+                        </div>
+                        <div class="ms-auto">
+                          <a href="{% url "quiz_detail" quiz.id %}" class="btn btn-sm btn-primary">View Details</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<!-- Add Quiz Modal -->
+<div class="modal fade" id="addQuizModal" tabindex="-1" aria-labelledby="addQuizModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addQuizModalLabel">Add New Quiz</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form method="post" enctype="multipart/form-data" action="{% url 'quiz_create' %}">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" id="title" name="title" required>
+          </div>
+          <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="category" class="form-label">(Class) Assign to Category </label>
+            <select class="form-control" id="category" name="category">
+              {% for category in categories %}
+                <option value="{{ category.id }}">({{category.class_assigned.name}}) {{ category.name }} </option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="picture" class="form-label">Picture</label>
+            <input type="file" class="form-control" id="picture" name="picture">
+          </div>
+          <button type="submit" class="btn btn-primary">Create Quiz</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
