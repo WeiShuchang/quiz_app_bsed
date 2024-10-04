@@ -31,7 +31,15 @@ urlpatterns = [
 
     path('student/', include('student.urls')),   
     path('teacher/', include('teacher.urls') ),
-  
+
+    path('games/', views.game_list, name='game_list'),
+    path('games/<int:game_id>/', views.game_detail, name='game_detail'),
+    path('games/<int:game_id>/play/', views.game_play, name='game_play'),
+    path('session/<int:session_id>/question/', views.game_question, name='game_question'),
+    path('results/<int:session_id>/', views.game_result, name='game_result'),
+    path('lessons/', views.lessons_list, name='lessons_list'),
+    path('lesson/<slug:lesson_slug>/', views.lesson_detail, name='lesson_detail'),
+    path('quizzes/', views.quiz_list, name='quiz_list'), 
 ]
 
 if settings.DEBUG:

@@ -13,7 +13,7 @@
                         <h1 class="text-white">Quiz App</h1>
     
                         <p class="text-white">Welcome {{user.username}}</p>
-                        <a href="#section_2" class="btn  btn-primary">View My Classes</a>
+                        <a href="#section_2" class="btn  btn-primary">View Quizzes</a>
                         
                     </div>
 
@@ -172,89 +172,47 @@
             </div>
         </div>
     </section>
-    <div class="container">
-        <div class="row justify-content-center py-3" >
-            <div class="col-lg-6 col-md-8 col-sm-10">
-                <div class="card">
-                    <div class="card-header bg-primary text-white">
-                        <h4 class="mb-0">Join a Class</h4>
-                    </div>
-                    <div class="card-body">
-                        <form method="post">
-                            {% csrf_token %}
-                            <p>Ask your teacher for the class code</p>
-                            <div class="mb-3">
-                                {{ form.as_p }}
-                            </div>
-                            <button type="submit" class="btn btn-primary">Join Class</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <section class="latest-podcast-section section-padding pb-0" id="section_2">
+
+    <section class="topics-section section-padding pb-0" id="section_2">
         <div class="container">
-            <div class="row justify-content-center">
+            <div class="row">
                 <div class="col-lg-12 col-12">
                     <div class="section-title-wrap mb-5">
-                        <h4 class="section-title">Your Classes</h4>
+                        <h4 class="section-title">Quizzes</h4>
                     </div>
                 </div>
-
-                {% for enrollment in enrolled_classes %}
-                    <div class="col-lg-6 col-12 mb-4 mb-lg-0 my-2">
-                        <div class="custom-block d-flex">
-                            <div class="">
-                                <div class="custom-block-icon-wrap">
-                                    <div class="section-overlay"></div>
-                                    <a href="detail-page.html" class="custom-block-image-wrap">
-                                        <img src="{% static 'bs_template/images/podcast/11683425_4790593.jpg' %}" class="custom-block-image img-fluid" alt="">
-                                        <a href="#" class="custom-block-icon">
-                                            <i class="bi-play-fill"></i>
-                                        </a>
-                                    </a>
-                                </div>
-                                <div class="mt-2">
-                                    <a href="{% url 'class_quizzes' enrollment.classroom.id %}" class="btn custom-btn">View Class</a>
-
-                                </div>
-                            </div>
-                            <div class="custom-block-info">
-                                <div class="custom-block-top d-flex mb-1">
-                                    <small class="me-4">
-                                        <i class="bi-clock-fill custom-icon"></i>
-                                        50 Minutes
-                                    </small>
-                                    <small>Episode <span class="badge">15</span></small>
-                                </div>
-                                <h5 class="mb-2">
-                                    <a href="{% url 'class_quizzes' enrollment.classroom.id %}">{{ enrollment.classroom.name }}</a>
-                                </h5>
-                                <div class="profile-block d-flex">
-                                    <img src="{% static 'bs_template/images/profile/woman-posing-black-dress-medium-shot.jpg' %}" class="profile-block-image img-fluid" alt="">
-                                    <p>Teacher: {{ enrollment.classroom.teacher.username }}</p>
-                                </div>
-                                <p class="mb-0">{{ enrollment.classroom.description }}</p>
-                                <div class="custom-block-bottom d-flex justify-content-between mt-3">
-                                    <a href="#" class="bi-headphones me-1"><span>120k</span></a>
-                                    <a href="#" class="bi-heart me-1"><span>42.5k</span></a>
-                                    <a href="#" class="bi-chat me-1"><span>11k</span></a>
-                                    <a href="#" class="bi-download"><span>50k</span></a>
-                                </div>
-                            </div>
+    
+                <!-- Loop through quizzes and display them -->
+                {% for quiz in quizzes %}
+                <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0" >
+                    <div class="custom-block custom-block-overlay">
+                        <a href="{% url 'quiz_detail_student' quiz.id %}" class="custom-block-image-wrap">
+                            <!-- Show quiz image if available, otherwise show a placeholder -->
+                            {% if quiz.picture %}
+                            <img src="{{ quiz.picture.url }}" class="custom-block-image img-fluid" alt="{{ quiz.title }}">
+                            {% else %}
+                            <img src="{% static 'images/default-placeholder.png' %}" class="custom-block-image img-fluid" alt="Placeholder image">
+                            {% endif %}
+                        </a>
+    
+                        <div class="custom-block-info custom-block-overlay-info text-center">
+                            <h5 class="mb-1">
+                                <a href="{% url 'quiz_detail_student' quiz.id %}">
+                                    {{ quiz.title }}
+                                </a>
+                            </h5>
+    
+                            <!-- Display the number of questions associated with the quiz -->
+                            <p class="badge mb-0 ">{{ quiz.questions.count }} Questions</p>
                         </div>
                     </div>
-                {% empty %}
-                    <div class="col-12 py-5 my-5">
-                        <p class="text-center">You are not enrolled in any classes yet.</p>
-                    </div>
+                </div>
                 {% endfor %}
-
             </div>
         </div>
     </section>
+    
+  
     <section class="topics-section section-padding pb-0" id="section_3">
 
     </section>

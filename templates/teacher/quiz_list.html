@@ -6,7 +6,7 @@
   <div class="container-xl">
     <div class="row g-2 align-items-center">
       <div class="col">
-        <h2 class="page-title">Quizzes by Class and Category</h2>
+        <h2 class="page-title">Quizzes by Category</h2>
       </div>
       <!-- Page title actions -->
       <div class="col-auto ms-auto d-print-none">
@@ -27,54 +27,38 @@
   <div class="container-xl">
     {% include "messages.html" %}
     <div class="row row-cards">
-      {% for class in classes %}
+      {% for category in categories %}
       <div class="col-12 mb-4">
         <div class="card shadow-sm">
           <div class="card-header bg-dark text-white">
-            <h3 class="card-title"> {{ class.name }}</h3>
+            <h3 class="card-title">{{ category.name }}</h3>
           </div>
           <div class="card-body">
-            {% for category in class.categories.all %}
-            <div class="category-section my-3 p-3 border rounded shadow-sm" style="background-color: #f8f9fa;">
-              <div class="d-flex align-items-center mb-3">
-                <h4 class="category-title text-primary">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-book" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                    <path d="M4 19h16" />
-                    <path d="M4 5h16" />
-                    <path d="M4 5v14a3 3 0 0 0 3 3h10a3 3 0 0 0 3 -3v-14" />
-                    <path d="M12 5v14" />
-                  </svg>
-                 {{ category.name }}
-                </h4>
-              </div>
-              <div class="row row-cards">
-                {% for quiz in category.quizzes.all %}
-                <div class="col-sm-6 col-lg-3 mb-4">
-                  <div class="card card-sm h-100" style="background-color: {% cycle 'lightblue' 'lightgreen' 'lightpink' 'lightyellow' %};">
-                    <a href="#" class="d-block">
-                      {% if quiz.picture %}
-                        <img src="{{ quiz.picture.url }}" class="card-img-top" alt="{{ quiz.title }}">
-                      {% else %}
-                        <img src="{% static 'default-image.jpg' %}" class="card-img-top" alt="Default image">
-                      {% endif %}
-                    </a>
-                    <div class="card-body">
-                      <div class="d-flex align-items-center">
-                        <div>
-                          <div class="font-weight-bold"><h5>{{ quiz.title }}</h5></div>
-                        </div>
-                        <div class="ms-auto">
-                          <a href="{% url "quiz_detail" quiz.id %}" class="btn btn-sm btn-primary">View Details</a>
-                        </div>
+            <div class="row row-cards">
+              {% for quiz in category.quizzes.all %}
+              <div class="col-sm-6 col-lg-3 mb-4">
+                <div class="card card-sm h-100" style="background-color: {% cycle 'lightblue' 'lightgreen' 'lightpink' 'lightyellow' %};">
+                  <a href="#" class="d-block">
+                    {% if quiz.picture %}
+                      <img src="{{ quiz.picture.url }}" class="card-img-top" alt="{{ quiz.title }}">
+                    {% else %}
+                      <img src="{% static 'default-image.jpg' %}" class="card-img-top" alt="Default image">
+                    {% endif %}
+                  </a>
+                  <div class="card-body">
+                    <div class="d-flex align-items-center">
+                      <div>
+                        <div class="font-weight-bold"><h5>{{ quiz.title }}</h5></div>
+                      </div>
+                      <div class="ms-auto">
+                        <a href="{% url "quiz_detail" quiz.id %}" class="btn btn-sm btn-primary">View Details</a>
                       </div>
                     </div>
                   </div>
                 </div>
-                {% endfor %}
               </div>
+              {% endfor %}
             </div>
-            {% endfor %}
           </div>
         </div>
       </div>
@@ -103,10 +87,10 @@
             <textarea class="form-control" id="description" name="description" rows="3"></textarea>
           </div>
           <div class="mb-3">
-            <label for="category" class="form-label">(Class) Assign to Category </label>
+            <label for="category" class="form-label">Assign to Category</label>
             <select class="form-control" id="category" name="category">
               {% for category in categories %}
-                <option value="{{ category.id }}">({{category.class_assigned.name}}) {{ category.name }} </option>
+                <option value="{{ category.id }}">{{ category.name }}</option>
               {% endfor %}
             </select>
           </div>

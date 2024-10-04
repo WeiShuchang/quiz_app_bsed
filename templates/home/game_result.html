@@ -1,0 +1,16 @@
+{% extends "home/base.html" %}
+
+{% block content %}
+<header class="site-header d-flex flex-column justify-content-center align-items-center vh-100">
+    <div class="container text-center">
+        <section class="game-result-section py-5">
+            <div class="container bg-light p-5 rounded shadow-lg">
+                <h2 class="display-4 text-primary mb-4">Your Score</h2>
+                <p class="lead">Score: <span class="font-weight-bold">{{ session.score }}</span> out of <span class="font-weight-bold">{{ session.game.total_questions }}</span></p>
+                <a href="{% url 'game_list' %}" class="btn btn-primary btn-lg mt-4">Play Again</a>
+            </div>
+        </section>
+    </div>
+</header>
+
+{% endblock %}

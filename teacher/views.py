@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Category, Quiz, Question, Choice, Class
-from .forms import CategoryForm, QuizForm, EditQuizForm, ClassForm
+from .models import Category, Quiz, Question, Choice, Game
+from .forms import CategoryForm, QuizForm, EditQuizForm
 from django.contrib import messages,  auth
 from django.http import JsonResponse,  HttpResponseForbidden,  HttpResponseBadRequest
 from django.views.decorators.http import require_POST
@@ -11,18 +11,9 @@ def teacher_dashboard(request):
     return render(request, "teacher/teacher_dashboard.html")
 
 def category_dashboard(request):
-    # Get the logged-in user
-    user = request.user
-    
-    # Filter classes where the logged-in user is the teacher
-    classes = Class.objects.filter(teacher=user)
-    
-    # Filter categories where the class_assigned's teacher matches the logged-in user
-    categories = Category.objects.filter(class_assigned__teacher=user)
-
+    categories = Category.objects.all()
     form = CategoryForm()  # If you want to add a new category, the form is still available
-
-    return render(request, 'teacher/category_list.html', {'classes': classes, 'categories': categories, 'form': form})
+    return render(request, 'teacher/category_list.html', {'categories': categories, 'form': form})
 
 def add_category(request):
     if request.method == 'POST':
@@ -44,13 +35,11 @@ def delete_category(request, pk):
         category.delete()
         messages.success(request, 'Category deleted successfully!')
         return redirect('category_list')  # Redirect to the dashboard after deletion
-    return render(request, 'seller/delete_category.html', {'category': category})
+    return render(request, 'teacher/delete_category.html', {'category': category})
 
 
 def edit_category(request, pk):
     category = get_object_or_404(Category, pk=pk)
-    classes = Class.objects.all()  # Fetch all classes for the dropdown
-
     if request.method == 'POST':
         form = CategoryForm(request.POST, request.FILES, instance=category)
         if form.is_valid():
@@ -59,18 +48,13 @@ def edit_category(request, pk):
             return redirect('category_list')
     else:
         form = CategoryForm(instance=category)
-    
-    return render(request, 'teacher/edit_category.html', {'form': form, 'category': category, 'classes': classes})
+    return render(request, 'teacher/edit_category.html', {'form': form, 'category': category})
 
 def quiz_list(request):
-    # Get the logged-in user
     user = request.user
+    categories = Category.objects.prefetch_related('quizzes').all()
+    return render(request, 'teacher/quiz_list.html', {'categories': categories})
 
-    # Filter classes and categories by the logged-in user (teacher)
-    classes = Class.objects.filter(teacher=user).prefetch_related('categories__quizzes')  # Optimize queries
-    categories = Category.objects.filter(class_assigned__teacher=user)
-
-    return render(request, 'teacher/quiz_list.html', {'classes': classes, 'categories': categories})
 
 def quiz_create(request):
     if request.method == 'POST':
@@ -96,14 +80,12 @@ def quiz_detail(request, quiz_id):
 
 def add_question(request, quiz_id):
     quiz = get_object_or_404(Quiz, id=quiz_id)
-    
     if request.method == 'POST':
         text = request.POST.get('text')
         if text:
             Question.objects.create(quiz=quiz, text=text, category=quiz.category)
             messages.success(request, 'Question added successfully!')
         return redirect('quiz_detail', quiz_id=quiz_id)
-    
     return render(request, 'quiz_detail.html', {'quiz': quiz})
 
 def add_choice(request, question_id):
@@ -113,7 +95,6 @@ def add_choice(request, question_id):
         text = request.POST.get('text')
         is_correct = request.POST.get('is_correct', False)
         is_correct = True if is_correct == 'on' else False
-        
         if text:
             Choice.objects.create(question=question, text=text, is_correct=is_correct, category=question.category)
             messages.success(request, 'Choice Successfully Added!')
@@ -171,79 +152,3 @@ def delete_question(request, question_id):
         messages.success(request, 'Question deleted successfully.')
     return redirect('quiz_detail', quiz_id=question.quiz.id)
 
-@login_required
-def class_dashboard(request):
-    # Get the logged-in user
-    user = request.user
-
-    # Filter classes by the logged-in user (teacher)
-    classes = Class.objects.filter(teacher=user)
-
-    context = {
-        'classes': classes,
-    }
-    return render(request, 'teacher/class_dashboard.html', context)
-
-@login_required
-def edit_class(request, pk):
-    class_instance = get_object_or_404(Class, pk=pk)
-    if request.method == 'POST':
-        form = ClassForm(request.POST, instance=class_instance)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Class updated successfully.')
-            return redirect('class_dashboard')
-        else:
-            messages.error(request, 'Error updating class. Please check the details.')
-    else:
-        form = ClassForm(instance=class_instance)
-
-    context = {
-        'form': form,
-        'class_instance': class_instance,
-    }
-    return render(request, 'teacher/class_form.html', context)
-
-@login_required
-def delete_class(request, pk):
-    class_instance = get_object_or_404(Class, pk=pk)
-    if request.method == 'POST':
-        class_instance.delete()
-        messages.success(request, 'Class deleted successfully.')
-        return redirect('class_dashboard')
-
-    context = {
-        'class_instance': class_instance,
-    }
-    return render(request, 'teacher/class_confirm_delete.html', context)
-
-
-@login_required
-def add_class(request):
-    if request.method == 'POST':
-        form = ClassForm(request.POST)
-        if form.is_valid():
-            new_class = form.save(commit=False)
-            new_class.teacher = request.user  # Automatically set the teacher to the logged-in user
-            new_class.save()
-            messages.success(request, 'Class created successfully.')
-            return redirect('class_dashboard')  # Redirect to the class dashboard after successful creation
-        else:
-            messages.error(request, 'Error creating class. Please check the details.')
-    else:
-        form = ClassForm()
-    
-    context = {
-        'form': form,
-    }
-    return render(request, 'teacher/class_dashboard.html', context)
-
-def class_quizzes_view(request, class_id):
-    classroom = get_object_or_404(Class, id=class_id)
-    categories = classroom.categories.all()  # Get all categories linked to the class
-
-    context = {
-        'classroom': classroom,
-        'categories': categories,
-    }
-    return render(request, 'student/class_detail.html', context)

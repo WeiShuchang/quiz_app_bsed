@@ -48,15 +48,31 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse  text-primary" id="navbarNav">
-               
-               
-                <div class="ms-4  ms-lg-auto">
-                    <a href="{% url "student_dashboard" %}" class="btn custom-btn custom-border-btn smoothscroll ">Home</a>
-                </div>
-                <div class="ms-4 ">
-                    <a href="{% url "logout_account" %}" class="btn custom-btn custom-border-btn smoothscroll ">Logout</a>
-                </div>
+           
+
+            <div class="collapse navbar-collapse text-primary" id="navbarNav">
+                <ul class="navbar-nav ms-lg-auto">
+                    
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'student_dashboard' %}">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'game_list' %}">Games</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'lessons_list' %}">Lessons</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url "quiz_list" %}">Quizzes</a>
+                    </li>
+
+                   
+                   
+                </ul>
             </div>
             
         </div>

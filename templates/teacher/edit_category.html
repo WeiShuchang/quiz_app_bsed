@@ -57,13 +57,7 @@
                     {% endif %}
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="id_class_assigned">Assigned Class</label>
-                    <select id="id_class_assigned" name="class_assigned" class="form-control">
-                        
-                        {% for class in classes %}
-                            <option value="{{ class.id }}" {% if class.id == category.class_assigned.id %}selected{% endif %}>{{ class.name }}</option>
-                        {% endfor %}
-                    </select>
+                 
                     {% if form.errors.class_assigned %}
                         <div class="text-danger">{{ form.errors.class_assigned }}</div>
                     {% endif %}

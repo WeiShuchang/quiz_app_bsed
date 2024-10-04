@@ -1,0 +1,123 @@
+{% extends "home/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<!-- Internal CSS for better visibility and fraction styling -->
+<style>
+    .fraction {
+        display: inline-block;
+        vertical-align: middle;
+        text-align: center;
+    }
+    
+    .fraction .numerator {
+        display: block;
+        font-size: 0.9em;
+        border-bottom: 1px solid #333;
+    }
+    
+    .fraction .denominator {
+        display: block;
+        font-size: 0.9em;
+    }
+
+    .lesson-content {
+        color: black;
+        font-size: 18px;
+    }
+
+    .lesson-title {
+        color: #0056b3;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .list-group-item {
+        background-color: #f8f9fa;
+        border: none;
+        padding: 15px;
+        font-size: 16px;
+    }
+
+    p{
+        color:black;
+        font-weight:bold;
+    }
+</style>
+
+<header class="site-header d-flex flex-column justify-content-center align-items-center">
+    <h2 class="text-center pt-5">Simplifying Fractions</h2>
+    <div class="image-placeholder mt-2" style="text-align: center;">
+        <img src="{% static 'images/topics/simplifying_fractions.jpg' %}" alt="Simplifying Fractions Image" class="img-fluid img-thumbnail" style="max-width: 300px; height: auto;">
+    </div>
+</header>
+
+<section class="lesson-content section-padding pb-0 pt-0" id="section_1">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="lesson-intro ">
+                    <h3 class="lesson-title pb-3">What is Simplifying Fractions?</h3>
+                    <p class="lesson-text">
+                        Simplifying fractions means reducing a fraction to its simplest form, where the numerator and denominator have no common factors other than 1. A fraction is in its simplest form when it cannot be reduced any further without changing its value.
+                    </p>
+                </div>
+
+                <div class="image-placeholder" style="text-align: center; margin: 20px 0;">
+                    <img src="{% static 'images/topics/simplifying_fractions_2.jpg' %}" alt="Fraction Example Image" class="img-fluid"  style="max-width: 300px; height: auto;">
+                </div>
+
+                <div class="lesson-steps mt-5">
+                    <h3 class="lesson-title mb-4">Steps to Simplify Fractions Using the Greatest Common Factor (GCF)</h3>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <strong>Step 1: Identify the Fraction.</strong> Start with the fraction you want to simplify, noting the numerator (the top number) and the denominator (the bottom number).
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Step 2: Find the Greatest Common Factor (GCF).</strong> The GCF is the largest positive number that divides two or more integers without leaving a remainder. Here’s how you find it:
+                            <ul>
+                                <li><strong>List the Factors:</strong> Determine all factors of both the numerator and denominator.</li>
+                                <li><strong>Identify Common Factors:</strong> Find the factors that are common to both the numerator and denominator.</li>
+                                <li><strong>Determine the GCF:</strong> Select the largest number from the common factors list. This is your GCF.</li>
+                            </ul>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Step 3: Divide by the GCF.</strong> Divide both the numerator and denominator by the GCF to simplify the fraction.
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="lesson-examples mt-4">
+                    <h3 class="lesson-title">Example:</h3>
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <p>Simplify the fraction <span class="fraction"><span class="numerator">36</span><span class="denominator">48</span></span>:</p>
+                            <ul>
+                                <li><strong>Step 1: Identify the Fraction:</strong> The numerator is 36, and the denominator is 48.</li>
+                                <li><strong>Step 2: Find the GCF:</strong>
+                                    <ul>
+                                        <li>Factors of 36: 1, 2, 3, 4, 6, 9, 12, 18, 36</li>
+                                        <li>Factors of 48: 1, 2, 3, 4, 6, 8, 12, 16, 24, 48</li>
+                                        <li>Common Factors: 1, 2, 3, 4, 6, 12</li>
+                                        <li>The GCF is 12.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Step 3: Divide by the GCF:</strong> Divide both 36 and 48 by 12:<br>
+                                    <span class="fraction"><span class="numerator">36</span><span class="denominator">12</span></span> ÷ <span class="fraction"><span class="numerator">48</span><span class="denominator">12</span></span> = <span class="fraction"><span class="numerator">3</span><span class="denominator">4</span></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-note mt-4">
+                    <h3 class="lesson-title">Remember:</h3>
+                    <p>Always ensure that the fraction is fully simplified, and there are no common factors between the numerator and the denominator other than 1. This will ensure that the fraction is in its simplest form.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

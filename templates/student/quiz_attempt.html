@@ -1,4 +1,4 @@
-{% extends "student/base.html" %}
+{% extends "home/base.html" %}
 
 {% block content %}
 <style>
@@ -12,7 +12,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-12 text-center">
-                <h2 class="text-center mb-4">{{ quiz.title }}</h2>
+                <h2 class="text-center mb-4 mt-4">{{ quiz.title }}</h2>
             </div>
             <div class="text-center mb-4">
                 <img src="{{ quiz.picture.url }}" alt="Quiz Image" class="img-fluid small-quiz-image">
@@ -54,42 +54,76 @@
         border-radius: 8px;
         padding: 20px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
     }
 
     .question-text {
         font-weight: bold;
-        margin-bottom: 15px;
+        margin-bottom: 20px;
     }
 
     .choices {
         display: flex;
         flex-direction: column;
+        gap: 15px; /* Add some spacing between choice options */
     }
 
     .choice-option {
         background: #ffffff;
-        border-radius: 8px;
-        margin-bottom: 10px;
-        padding: 10px;
-        border: 1px solid #ddd;
-        transition: background 0.3s, border-color 0.3s;
+        border-radius: 12px;
+        padding: 15px;
+        border: 2px solid #ddd;
+        transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
+        display: flex;
+        align-items: center;
         cursor: pointer;
+        position: relative;
+        overflow: hidden;
     }
 
-    .choice-option:hover {
-        background: #e0f7fa;
-        border-color: #80deea;
+    /* Hide the default radio button */
+    .choice-option input[type="radio"] {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    /* Custom radio button styles */
+    .choice-option::before {
+        content: '';
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: 2px solid #00bcd4;
+        margin-right: 15px;
+        transition: background 0.3s, border-color 0.3s;
+    }
+
+    .choice-option.selected::before {
+        background-color: #00bcd4;
+        border-color: #00bcd4;
     }
 
     .choice-option.selected {
         background: #00bcd4;
         color: #fff;
         border-color: #00bcd4;
+        box-shadow: 0 4px 12px rgba(0, 188, 212, 0.4);
+    }
+
+    .choice-option:hover {
+        border-color: #00bcd4;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
 
     .btn-submit {
         background: #00bcd4;
         border-color: #00bcd4;
+        padding: 10px 30px;
+        font-size: 18px;
+        font-weight: bold;
+        transition: background 0.3s, border-color 0.3s;
     }
 
     .btn-submit:hover {
@@ -97,6 +131,7 @@
         border-color: #0097a7;
     }
 </style>
+
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {

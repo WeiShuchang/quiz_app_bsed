@@ -1,0 +1,143 @@
+{% extends "home/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<!-- Internal CSS for better visibility and fraction styling -->
+<style>
+    .fraction {
+        display: inline-block;
+        vertical-align: middle;
+        text-align: center;
+    }
+    
+    .fraction .numerator {
+        display: block;
+        font-size: 0.9em;
+        border-bottom: 1px solid #333;
+    }
+    
+    .fraction .denominator {
+        display: block;
+        font-size: 0.9em;
+    }
+
+    .lesson-content {
+        color: black;
+        font-size: 18px;
+    }
+
+    .lesson-title {
+        color: #0056b3;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .list-group-item {
+        background-color: #f8f9fa;
+        border: none;
+        padding: 15px;
+        font-size: 16px;
+    }
+    p, {
+        color:black;
+        font-weight:bold;
+    }
+</style>
+
+<header class="site-header d-flex flex-column justify-content-center align-items-center">
+    <h2 class="text-center  pt-5" >Understanding Fractions</h2>
+    <div class="image-placeholder mt-2" style="text-align: center; ;">
+        <img src="{% static 'images/topics/fractions1.jpg' %}" alt="Understanding Fractions Image" class="img-fluid img-thumbnail" style="max-width: 300px; height: auto;">
+    </div>
+</header>
+
+<section class="lesson-content section-padding pb-0 pt-0" id="section_1">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="lesson-intro">
+                    <h3 class="lesson-title pb-3">Definition</h3>
+                    <p class="lesson-text">
+                        A fraction is a numerical representation of a part of a whole. It consists of two numbers separated by a horizontal line called the fraction bar:
+                    </p>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <strong>Numerator:</strong> The number above the fraction bar, indicating how many parts are being considered.
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Denominator:</strong> The number below the fraction bar, indicating the total number of equal parts into which the whole is divided.
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="lesson-examples mt-4">
+                    <h3 class="lesson-title">Examples:</h3>
+
+                    
+
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <p>In the fraction <span class="fraction"><span class="numerator">3</span><span class="denominator">4</span></span>,</p>
+                            <div class="image-placeholder" style="text-align: center; margin: 20px 0;">
+                                <img src="{% static 'images/topics/three_fourths.png' %}" alt="Fraction Example Image" class="img-fluid"  style="max-width: 250px; height: auto;">
+                            </div>
+                            <ul>
+                                <li>The numerator <strong>3</strong> indicates that 3 parts are being considered.</li>
+                                <li>The denominator <strong>4</strong> indicates that the whole is divided into 4 equal parts.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    
+
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <p>In the fraction <span class="fraction"><span class="numerator">6</span><span class="denominator">7</span></span>,</p>
+                            <div class="image-placeholder" style="text-align: center; margin: 20px 0;">
+                                <img src="{% static 'images/topics/six_seventh.png' %}" alt="Fraction Example Image" class="img-fluid"  style="max-width: 250px; height: auto;">
+                            </div>
+                            <ul>
+                                <li>The numerator <strong>6</strong> indicates that 6 parts are being considered.</li>
+                                <li>The denominator <strong>7</strong> indicates that the whole is divided into 7 equal parts.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-types mt-4">
+                    <h3 class="lesson-title">Types of Fractions</h3>
+
+                    <div class="image-placeholder" style="text-align: center; margin-bottom: 20px;">
+                        <img src="{% static 'images/topics/types_of_fractions.png' %}" alt="Types of Fractions Image" class="img-fluid" >
+                    </div>
+
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <strong>Proper Fractions:</strong> The numerator is less than the denominator.<br>
+                            <em>Examples:</em> <br>
+                            <span class="fraction"><span class="numerator">2</span><span class="denominator">5</span></span>,  
+                            <span class="fraction"><span class="numerator">11</span><span class="denominator">17</span></span>,           
+                            <span class="fraction"><span class="numerator">3</span><span class="denominator">13</span></span> 
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Improper Fractions:</strong> The numerator is greater than or equal to the denominator.<br>
+                            <em>Examples:</em> <br>
+                            <span class="fraction"><span class="numerator">5</span><span class="denominator">5</span></span>, 
+                            <span class="fraction"><span class="numerator">9</span><span class="denominator">7</span></span>, 
+                            <span class="fraction"><span class="numerator">25</span><span class="denominator">8</span></span>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Mixed Numbers:</strong> A whole number combined with a proper fraction.<br>
+                            <em>Examples:</em><br> 1 <span class="fraction"><span class="numerator">1</span><span class="denominator">2</span></span>, 
+                            12 <span class="fraction"><span class="numerator">3</span><span class="denominator">7</span></span>, 
+                            20 <span class="fraction"><span class="numerator">1</span><span class="denominator">5</span></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

@@ -1,0 +1,16 @@
+{% extends "home/base.html" %}
+
+{% block content %}
+<section class="game-play-section">
+    <div class="container">
+        <h2>{{ game.name }}</h2>
+        <img src="{{ game.picture.url }}" alt="{{ game.name }}" class="img-fluid">
+        <p>Get ready to play!</p>
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="user_name" placeholder="Enter your name" required>
+            <button type="submit" class="btn btn-primary">Start Game</button>
+        </form>
+    </div>
+</section>
+{% endblock %}

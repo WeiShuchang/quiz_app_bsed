@@ -3,7 +3,6 @@
 {% block title %}Category Dashboard{% endblock %}
 
 {% block content %}
-
 <div class="page-wrapper">
     <!-- Page header -->
     <div class="page-header d-print-none">
@@ -22,7 +21,7 @@
                         <a href="#" class="btn btn-primary d-none d-sm-inline-block" data-bs-toggle="modal" data-bs-target="#modal-report">
                             Add New Category
                         </a>
-                        <a href="#" class="btn btn-primary d-sm-none btn-icon" data-bs-toggle="modal" data-bs-target="#modal-report" aria-label="Create new report">
+                        <a href="#" class="btn btn-primary d-sm-none btn-icon" data-bs-toggle="modal" data-bs-target="#modal-report" aria-label="Add new category">
                             <!-- Icon here -->
                         </a>
                     </div>
@@ -35,61 +34,59 @@
     <div class="page-body">
         <div class="container-xl">
             {% include "messages.html" %}
-            {% for class in classes %}
-                <div class="col-12 my-3">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">CLASS: {{ class.name }}</h3>
-                        </div>
+            <div class="col-12 my-3">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Categories</h3>
+                    </div>
 
-                        <div class="table-responsive">
-                            <table class="table card-table table-vcenter text-nowrap datatable">
-                                <thead>
+                    <div class="table-responsive">
+                        <table class="table card-table table-vcenter text-nowrap datatable">
+                            <thead>
+                                <tr>
+                                    <th class="w-1">No.</th>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                    <th>Picture</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for category in categories %}
                                     <tr>
-                                        <th class="w-1">No.</th>
-                                        <th>Name</th>
-                                        <th>Description</th>
-                                        <th>Picture</th>
-                                        <th>Edit</th>
-                                        <th>Delete</th>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td>{{ category.name }}</td>
+                                        <td>{{ category.description }}</td>
+                                        <td>
+                                            {% if category.picture %}
+                                                <img src="{{ category.picture.url }}" alt="{{ category.name }}" width="50">
+                                            {% else %}
+                                                No image
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <a href="{% url "edit_category" category.id %}" class="btn btn-sm btn-primary">Edit</a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <form action="{% url "delete_category" category.id %}" method="POST">
+                                                {% csrf_token %}
+                                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this category?')">Delete</button>
+                                            </form>
+                                        </td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    {% for category in class.categories.all %}
-                                        <tr>
-                                            <td>{{ forloop.counter }}</td>
-                                            <td>{{ category.name }}</td>
-                                            <td>{{ category.description }}</td>
-                                            <td>
-                                                {% if category.picture %}
-                                                    <img src="{{ category.picture.url }}" alt="{{ category.name }}" width="50">
-                                                {% else %}
-                                                    No image
-                                                {% endif %}
-                                            </td>
-                                            <td>
-                                                <div class="btn-group">
-                                                    <a href="{% url "edit_category" category.id %}" class="btn btn-sm btn-primary">Edit</a>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <form action="{% url "delete_category" category.id %}" method="POST">
-                                                    {% csrf_token %}
-                                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this category?')">Delete</button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    {% empty %}
-                                        <tr>
-                                            <td colspan="6" class="text-center">No categories available for this class.</td>
-                                        </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
+                                {% empty %}
+                                    <tr>
+                                        <td colspan="6" class="text-center">No categories available.</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-            {% endfor %}
+            </div>
         </div>
     </div>
 
@@ -112,7 +109,7 @@
                                 <div class="text-danger">{{ form.name.errors }}</div>
                             {% endif %}
                         </div>
-    
+
                         <!-- Description Field -->
                         <div class="mb-3">
                             <label class="form-label">Description</label>
@@ -121,7 +118,7 @@
                                 <div class="text-danger">{{ form.description.errors }}</div>
                             {% endif %}
                         </div>
-    
+
                         <!-- Picture Upload Field -->
                         <div class="mb-3">
                             <label class="form-label">Picture</label>
@@ -130,32 +127,14 @@
                                 <div class="text-danger">{{ form.picture.errors }}</div>
                             {% endif %}
                         </div>
-    
-                        <!-- Class Assigned Field -->
-                        <div class="mb-3">
-                            <label class="form-label">Assign to Class</label>
-                            <select class="form-select" name="class_assigned">
-                                <option value="">Select a class</option>
-                                {% for class in classes %}
-                                    <option value="{{ class.id }}">{{ class.name }}</option>
-                                {% endfor %}
-                            </select>
-                            {% if form.class_assigned.errors %}
-                                <div class="text-danger">{{ form.class_assigned.errors }}</div>
-                            {% endif %}
-                        </div>
                     </div>
                     <div class="modal-footer">
                         <a href="#" class="btn btn-link link-secondary" data-bs-dismiss="modal">Cancel</a>
-                        <button type="submit" class="btn btn-primary ms-auto">
-                            Add New Category
-                        </button>
+                        <button type="submit" class="btn btn-primary ms-auto">Add New Category</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-    
 </div>
-
 {% endblock %}

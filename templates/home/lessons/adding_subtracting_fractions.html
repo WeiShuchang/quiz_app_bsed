@@ -1,0 +1,220 @@
+{% extends "home/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<!-- Internal CSS for better visibility and fraction styling -->
+<style>
+    .fraction {
+        display: inline-block;
+        vertical-align: middle;
+        text-align: center;
+    }
+    
+    .fraction .numerator {
+        display: block;
+        font-size: 0.9em;
+        border-bottom: 1px solid #333;
+    }
+    
+    .fraction .denominator {
+        display: block;
+        font-size: 0.9em;
+    }
+
+    .lesson-content {
+        color: black;
+        font-size: 18px;
+    }
+
+    .lesson-title {
+        color: #0056b3;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .list-group-item {
+        background-color: #f8f9fa;
+    
+        border: none;
+        padding: 15px;
+        font-size: 16px;
+    }
+
+    p {
+        color: black;
+        font-weight: bold;
+    }
+</style>
+
+<header class="site-header d-flex flex-column justify-content-center align-items-center">
+    <h2 class="text-center pt-5">Adding and Subtracting Fractions</h2>
+    <div class="image-placeholder mt-2" style="text-align: center;">
+        <img src="{% static 'images/topics/add_and_subtract.jpg' %}" alt="Adding and Subtracting Fractions Image" class="img-fluid img-thumbnail" style="max-width: 300px; height: auto;">
+    </div>
+</header>
+
+<section class="lesson-content section-padding pb-0 pt-0" id="section_1">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="lesson-intro ">
+                    <h3 class="lesson-title pb-3">What is Adding and Subtracting Fractions?</h3>
+                    <p class="lesson-text">
+                        Adding fractions involves combining two or more fractions to produce a single fraction. Subtracting fractions involves finding the difference between two fractions. The process can vary depending on whether the fractions have the same denominator (like terms) or different denominators (unlike terms).
+                    </p>
+                </div>
+
+                <div class="lesson-steps mt-5">
+                    <h3 class="lesson-title mb-4">Case 1: Adding Fractions with the Same Denominator</h3>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <strong>Step 1: Add the Numerators.</strong> Simply combine the numerators.
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Step 2: Keep the Denominator.</strong> The denominator remains unchanged.
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Step 3: Simplify if Necessary.</strong> If possible, simplify the resulting fraction.
+                        </li>
+                    </ul>
+
+                    <div class="lesson-examples mt-4">
+                        <h3 class="lesson-title">Example:</h3>
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <p>What is the sum of <span class="fraction"><span class="numerator">1</span><span class="denominator">6</span></span> + <span class="fraction"><span class="numerator">2</span><span class="denominator">6</span></span>?</p>
+                                <ul>
+                                    <li><strong>Step 1: Add the Numerators:</strong> <span class="numerator">1 + 2 = 3</span></li>
+                                    <li><strong>Step 2: Keep the Denominator:</strong> The denominator remains 6.</li>
+                                    <li><strong>Step 3: Simplify if Necessary:</strong> The sum is <span class="fraction"><span class="numerator">3</span><span class="denominator">6</span></span>, which simplifies to <span class="fraction"><span class="numerator">1</span><span class="denominator">2</span></span>.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-steps mt-5">
+                    <h3 class="lesson-title mb-4">Case 2: Adding Fractions with Different Denominators</h3>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <strong>Step 1: Find the Least Common Denominator (LCD).</strong> Determine the smallest number that both denominators can divide into evenly.
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Step 2: Convert Each Fraction.</strong> Adjust each fraction to have the common denominator.
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Step 3: Add the Numerators.</strong> Now that both fractions have a common denominator, add their numerators.
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Step 4: Keep the Common Denominator.</strong> The denominator remains as is.
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Step 5: Simplify if Necessary.</strong> Check if the resulting fraction can be simplified further.
+                        </li>
+                    </ul>
+
+                    <div class="lesson-examples mt-4">
+                        <h3 class="lesson-title">Example:</h3>
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <p>Add <span class="fraction"><span class="numerator">1</span><span class="denominator">2</span></span> + <span class="fraction"><span class="numerator">1</span><span class="denominator">3</span></span>.</p>
+                                <ul>
+                                    <li><strong>Step 1: Find the LCD:</strong> The LCD of 2 and 3 is 6.</li>
+                                    <li><strong>Step 2: Convert Each Fraction:</strong>
+                                        <ul>
+                                            <li>Convert <span class="fraction"><span class="numerator">1</span><span class="denominator">2</span></span> to <span class="fraction"><span class="numerator">3</span><span class="denominator">6</span></span> (multiply by 3).</li>
+                                            <li>Convert <span class="fraction"><span class="numerator">1</span><span class="denominator">3</span></span> to <span class="fraction"><span class="numerator">2</span><span class="denominator">6</span></span> (multiply by 2).</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>Step 3: Add the Numerators:</strong> <span class="numerator">3 + 2 = 5</span></li>
+                                    <li><strong>Step 4: Keep the Common Denominator:</strong> The denominator is 6.</li>
+                                    <li><strong>Step 5: Simplify if Necessary:</strong> The sum is <span class="fraction"><span class="numerator">5</span><span class="denominator">6</span></span>, which is already in its simplest form.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-steps mt-5">
+                    <h3 class="lesson-title mb-4">Subtracting Fractions</h3>
+                    <p>Subtracting fractions involves finding the difference between two fractions. The process varies depending on whether the fractions have the same or different denominators.</p>
+
+                    <h4>Case 1: Subtracting Fractions with the Same Denominator</h4>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <strong>Step 1: Subtract the Numerators.</strong> Directly subtract the numerator of the second fraction from the first fraction.
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Step 2: Keep the Denominator.</strong> The denominator remains unchanged.
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Step 3: Simplify if Necessary.</strong> If possible, reduce the resulting fraction to its simplest form.
+                        </li>
+                    </ul>
+
+                    <div class="lesson-examples mt-4">
+                        <h3 class="lesson-title">Example:</h3>
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <p>What is <span class="fraction"><span class="numerator">9</span><span class="denominator">25</span></span> - <span class="fraction"><span class="numerator">6</span><span class="denominator">25</span></span>?</p>
+                                <ul>
+                                    <li><strong>Step 1: Subtract the Numerators:</strong> <span class="numerator">9 - 6 = 3</span></li>
+                                    <li><strong>Step 2: Keep the Denominator:</strong> The denominator remains 25.</li>
+                                    <li><strong>Step 3: Simplify if Necessary:</strong> The result is <span class="fraction"><span class="numerator">3</span><span class="denominator">25</span></span>, which is already in simplest form.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h4>Case 2: Subtracting Fractions with Different Denominators</h4>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <strong>Step 1: Find the Least Common Denominator (LCD).</strong> Determine the smallest number that both denominators can divide into evenly.
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Step 2: Convert Each Fraction.</strong> Adjust each fraction to have the common denominator.
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Step 3: Subtract the Numerators.</strong> Subtract the numerator of the second fraction from the first.
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Step 4: Keep the Common Denominator.</strong> The denominator remains as is.
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Step 5: Simplify if Necessary.</strong> Check if the resulting fraction can be simplified further.
+                        </li>
+                    </ul>
+
+                    <div class="lesson-examples mt-4">
+                        <h3 class="lesson-title">Example:</h3>
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <p>Subtract <span class="fraction"><span class="numerator">3</span><span class="denominator">4</span></span> - <span class="fraction"><span class="numerator">1</span><span class="denominator">2</span></span>.</p>
+                                <ul>
+                                    <li><strong>Step 1: Find the LCD:</strong> The LCD of 4 and 2 is 4.</li>
+                                    <li><strong>Step 2: Convert Each Fraction:</strong>
+                                        <ul>
+                                            <li>The first fraction remains <span class="fraction"><span class="numerator">3</span><span class="denominator">4</span></span>.</li>
+                                            <li>Convert <span class="fraction"><span class="numerator">1</span><span class="denominator">2</span></span> to <span class="fraction"><span class="numerator">2</span><span class="denominator">4</span></span> (multiply by 2).</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>Step 3: Subtract the Numerators:</strong> <span class="numerator">3 - 2 = 1</span></li>
+                                    <li><strong>Step 4: Keep the Common Denominator:</strong> The denominator is 4.</li>
+                                    <li><strong>Step 5: Simplify if Necessary:</strong> The result is <span class="fraction"><span class="numerator">1</span><span class="denominator">4</span></span>, which is already in its simplest form.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-notes mt-5">
+                    <h3 class="lesson-title">Notes:</h3>
+                    <p>When adding or subtracting fractions, it's essential to check if the resulting fraction can be simplified. Practicing with various fractions helps in gaining confidence in these operations.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

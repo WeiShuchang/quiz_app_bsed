@@ -1,0 +1,128 @@
+{% extends "home/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<!-- Internal CSS for better visibility and fraction styling -->
+<style>
+    .fraction {
+        display: inline-block;
+        vertical-align: middle;
+        text-align: center;
+    }
+    
+    .fraction .numerator {
+        display: block;
+        font-size: 0.9em;
+        border-bottom: 1px solid #333;
+    }
+    
+    .fraction .denominator {
+        display: block;
+        font-size: 0.9em;
+    }
+
+    .lesson-content {
+        color: black;
+        font-size: 18px;
+    }
+
+    .lesson-title {
+        color: #0056b3;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .list-group-item {
+        background-color: #f8f9fa;
+        border: none;
+        padding: 15px;
+        font-size: 16px;
+    }
+
+    p {
+        color: black;
+        font-weight: bold;
+    }
+</style>
+
+<header class="site-header d-flex flex-column justify-content-center align-items-center">
+    <h2 class="text-center pt-5">Dividing Fractions</h2>
+    <div class="image-placeholder mt-2" style="text-align: center;">
+        <img src="{% static 'images/topics/dividing_fractions.png' %}" alt="Dividing Fractions Image" class="img-fluid img-thumbnail" style="max-width: 300px; height: auto;">
+    </div>
+</header>
+
+<section class="lesson-content section-padding pb-0 pt-0" id="section_1">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="lesson-intro ">
+                    <h3 class="lesson-title pb-3">What is Dividing Fractions?</h3>
+                    <p class="lesson-text">
+                        Dividing fractions involves a specific process that requires converting the division operation into multiplication.
+                    </p>
+                </div>
+
+                <div class="lesson-steps mt-5">
+                    <h3 class="lesson-title mb-4">Steps to Divide Fractions</h3>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <strong>Step 1: Take the Reciprocal.</strong> Take the reciprocal of the second fraction by flipping its numerator and denominator.
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Step 2: Multiply.</strong> Change the division operation to multiplication by multiplying the first fraction by the reciprocal of the second fraction.
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Step 3: Multiply the Numerators.</strong> Multiply the numerators of both fractions together.
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Step 4: Multiply the Denominators.</strong> Multiply the denominators of both fractions together.
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Step 5: Combine the Results.</strong> Form a new fraction using the results.
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Step 6: Simplify if Necessary.</strong> If possible, reduce the resulting fraction to its simplest form.
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="lesson-examples mt-4">
+                    <h3 class="lesson-title">Example:</h3>
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <p>Divide the fractions <span class="fraction"><span class="numerator">2</span><span class="denominator">3</span></span> by <span class="fraction"><span class="numerator">3</span><span class="denominator">4</span></span>:</p>
+                            <ul>
+                                <li><strong>Step 1: Take the Reciprocal:</strong> <br>
+                                    The reciprocal of <span class="fraction"><span class="numerator">3</span><span class="denominator">4</span></span> is <span class="fraction"><span class="numerator">4</span><span class="denominator">3</span></span>.
+                                </li>
+                                <li><strong>Step 2: Multiply:</strong> <br>
+                                    <span class="fraction"><span class="numerator">2</span><span class="denominator">3</span></span> x <span class="fraction"><span class="numerator">4</span><span class="denominator">3</span></span>
+                                </li>
+                                <li><strong>Step 3: Multiply the Numerators:</strong> <br>
+                                    2 x 4 = 8
+                                </li>
+                                <li><strong>Step 4: Multiply the Denominators:</strong> <br>
+                                    3 x 3 = 9
+                                </li>
+                                <li><strong>Step 5: Combine the Results:</strong> <br>
+                                    The result is <span class="fraction"><span class="numerator">8</span><span class="denominator">9</span></span>.
+                                </li>
+                                <li><strong>Step 6: Simplify if Necessary:</strong> <br>
+                                    The fraction <span class="fraction"><span class="numerator">8</span><span class="denominator">9</span></span> is already in its simplest form.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-note mt-4">
+                    <h3 class="lesson-title">Remember:</h3>
+                    <p>When dividing fractions, always take the reciprocal of the second fraction before multiplying!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

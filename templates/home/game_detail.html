@@ -1,0 +1,54 @@
+{% extends "home/base.html" %}
+{% load static %}
+
+{% block content %}
+
+
+<header class="site-header d-flex flex-column justify-content-center align-items-center">
+    <div class="container">
+        <section class="latest-podcast-section section-padding pb-0" id="section_2" ">
+            <div class="container-fluid">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10 col-12">
+                        <div class="custom-block bg-white shadow p-3">
+                            <div class="section-title-wrap mb-3">
+                                <h4 class="section-title" id="section-title">{{game.name}}</h4>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3 col-12">
+                                    <div class="custom-block-icon-wrap">
+                                        <div class="custom-block-image-wrap custom-block-image-detail-page">
+                                            <img src="{{ game.picture.url }}" class="custom-block-image img-fluid" alt="{{ game.name }}">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-9 col-12">
+                                    <div class="custom-block-info">
+                                        <div class="custom-block-top d-flex">
+                                            <small>
+                                                <i class="bi-clock-fill custom-icon"></i>
+                                                {{ game.duration }} Seconds
+                                            </small>
+                                            <small class="ms-auto">Total Questions: <span class="badge">{{ game.total_questions }}</span></small>
+                                        </div>
+
+                                        <p>{{ game.description }}</p>
+
+                                        <form method="post" action="{% url 'game_play' game.id %}" class="text-center">
+                                            {% csrf_token %}
+                                            <input type="text" name="user_name" placeholder="Enter your name" class="form-control mb-2" required>
+                                            <button type="submit" class="btn btn-primary">Start Game</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <!-- End of card -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</header>
+
+{% endblock content %}

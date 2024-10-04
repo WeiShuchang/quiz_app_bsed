@@ -1,0 +1,50 @@
+{% extends "home/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<header class="site-header d-flex flex-column justify-content-center align-items-center">
+    <div class="container">
+
+    
+        <section class="trending-podcast-section section-padding" style="margin-top:10px;">
+            <h2 class=" text-center mb-4 pb-3"> Games</h2>
+            <div class="container">
+                <div class="row">
+                    {% for game in games %}
+                    <div class="col-lg-4 col-12 my-4 mb-lg-0" onclick="location.href='{% url 'game_detail' game.id %}'">
+                        <div class="custom-block custom-block-full">
+                            <div class="custom-block-image-wrap">
+                                <a href="{% url 'game_detail' game.id %}">  <!-- Replace with your detail page URL -->
+                                    <img src="{{ game.picture.url }}" class="custom-block-image img-fluid" alt="">
+                                </a>
+                            </div>
+        
+                            <div class="custom-block-info">
+                                <h6 class="mb-2 text-center">
+                                    <a href="{% url 'game_detail' game.id %}">{{ game.name }}</a>
+                                </h6>
+        
+                           
+                                <div class="text-center">
+                                    <p class="mb-0">{{ game.description }}</p>
+                                    <a href="{% url 'game_detail' game.id %}" class="btn btn-primary my-2">Details</a>
+                                </div>
+                                
+                                <div class="custom-block-bottom d-flex justify-content-between mt-3">
+                                    <span>{{ game.total_questions }} Questions</span>
+                                    <span>{{ game.duration }} seconds</span>
+                                </div>
+                            </div>
+        
+                            
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        
+    </div>
+</header>
+{% endblock content %}

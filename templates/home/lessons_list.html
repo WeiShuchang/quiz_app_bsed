@@ -1,0 +1,99 @@
+{% extends "home/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<header class="site-header d-flex flex-column justify-content-center align-items-center">
+    <section class="topics-section section-padding px-3 pb-0 mt-3" id="section_3">
+        <div class=" bg-light rounded px-4 py-2">
+            <div class="row">
+    
+                <div class="col-lg-12 col-12">
+                    <div class="section-title-wrap mt-2 mb-2">
+                        <h4 class="section-title">Lessons</h4>
+                    </div>
+                </div>
+    
+                <!-- Understanding Fractions -->
+                <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
+                    <div class="custom-block custom-block-overlay">
+                        <a href="{% url 'lesson_detail' 'understanding_fractions' %}" class="custom-block-image-wrap">
+                            <img src="{% static 'images/topics/fractions1.jpg' %}" class="custom-block-image img-fluid" alt="Understanding Fractions">
+                        </a>
+                        <div class="custom-block-info custom-block-overlay-info">
+                            <h5 class="mb-1">
+                                <a href="{% url 'lesson_detail' 'understanding_fractions' %}">Understanding Fractions</a>
+                            </h5>
+                        
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Simplifying Fractions -->
+                <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
+                    <div class="custom-block custom-block-overlay">
+                        <a href="{% url 'lesson_detail' 'simplifying_fractions' %}" class="custom-block-image-wrap">
+                            <img src="{% static 'images/topics/simplifying_fractions.jpg' %}" class="custom-block-image img-fluid" alt="Simplifying Fractions">
+                        </a>
+                        <div class="custom-block-info custom-block-overlay-info">
+                            <h5 class="mb-1">
+                                <a href="{% url 'lesson_detail' 'simplifying_fractions' %}">Simplifying Fractions</a>
+                            </h5>
+                        
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Adding and Subtracting Fractions -->
+                <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
+                    <div class="custom-block custom-block-overlay">
+                        <a href="{% url 'lesson_detail' 'adding_subtracting_fractions' %}" class="custom-block-image-wrap">
+                            <img src="{% static 'images/topics/add_and_subtract.jpg' %}" class="custom-block-image img-fluid" alt="Adding and Subtracting Fractions">
+                        </a>
+                        <div class="custom-block-info custom-block-overlay-info">
+                            <h5 class="mb-1">
+                                <a href="{% url 'lesson_detail' 'adding_subtracting_fractions' %}">Add and Subtract Fractions</a>
+                            </h5>
+                       
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Multiplying Fractions -->
+                <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
+                    <div class="custom-block custom-block-overlay">
+                        <a href="{% url 'lesson_detail' 'multiplying_fractions' %}" class="custom-block-image-wrap">
+                            <img src="{% static 'images/topics/multiply_fractions.jpg' %}" class="custom-block-image img-fluid" alt="Multiplying Fractions">
+                        </a>
+                        <div class="custom-block-info custom-block-overlay-info">
+                            <h5 class="mb-1">
+                                <a href="{% url 'lesson_detail' 'multiplying_fractions' %}">Multiplying Fractions</a>
+                            </h5>
+                         
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Dividing Fractions -->
+                <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
+                    <div class="custom-block custom-block-overlay">
+                        <a href="{% url 'lesson_detail' 'dividing_fractions' %}" class="custom-block-image-wrap">
+                            <img src="{% static 'images/topics/dividing_fractions.png' %}" class="custom-block-image img-fluid" alt="Dividing Fractions">
+                        </a>
+                        <div class="custom-block-info custom-block-overlay-info">
+                            <h5 class="mb-1">
+                                <a href="{% url 'lesson_detail' 'dividing_fractions' %}">Dividing Fractions</a>
+                            </h5>
+                          
+                        </div>
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+    </section>
+</header>
+
+
+
+{% endblock content %}
