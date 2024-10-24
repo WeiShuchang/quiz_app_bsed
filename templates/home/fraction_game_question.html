@@ -1,0 +1,174 @@
+{% extends "home/base.html" %}
+{% load fraction_filters %}
+{% block content %}
+<header class="site-header d-flex flex-column justify-content-center align-items-center min-vh-100">
+    <div class="container">
+        <section class="fraction-question-section">
+            <div class="card shadow-sm p-4">
+                <h6 class="text-center text-muted mb-4">Question {{ current_question_number }} of {{ total_questions }}</h6>
+                <h3 class="text-dark text-center mb-1">{% with question.text|format_fraction as formatted_question %} 
+                    {{ formatted_question|safe }} 
+                {% endwith %}</h3>
+
+                <form id="fraction-form" method="post">
+                    {% csrf_token %}
+                    <div class="form-group d-flex flex-column align-items-center">
+                        <div class="text-center mb-3 align-items-center">
+                            <div class="fraction-container mx-auto">
+                                <!-- Input fields styled to look like a fraction -->
+                                <input type="number" name="numerator" class="form-control fraction-input" required>
+                                <div class="fraction-line"></div>
+                                <input type="number" name="denominator" class="form-control fraction-input" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="correct-feedback" class="feedback-message text-center" style="display: none;">
+                        <p class="text-success">✔ Correct!</p>
+                    </div>
+                    <div id="incorrect-feedback" class="feedback-message text-center" style="display: none;">
+                        <p class="text-danger">✖ Incorrect!</p>
+                    </div>
+
+                    <div class="align-items-center text-center">
+                        <div class="d-flex justify-content-between align-items-center mt-3 ">
+                            <p class="mb-0 text-center align-items-center">Time left: <span id="timer" class="font-weight-bold"></span> seconds</p>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary mt-1">Submit</button>
+                    </div>
+                </form>
+
+            </div>
+        </section>
+    </div>
+</header>
+
+<!-- Time's up Modal -->
+<div class="modal fade" id="timeUpModal" tabindex="-1" aria-labelledby="timeUpModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h6 class="modal-title text-danger" id="timeUpModalLabel">Time's Up!</h6>
+            </div>
+            <div class="modal-body text-center">
+                The time for this question has run out. You will be redirected to the results page.
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const sessionId = {{ session.id }};
+    const duration = {{ session.game.duration }}; 
+    const timeKey = `fractionGameTimeLeft_${sessionId}`;
+    let timeLeft = localStorage.getItem(timeKey) !== null ? localStorage.getItem(timeKey) : duration;
+    timeLeft = parseInt(timeLeft, 10);
+    const timerElement = document.getElementById('timer');
+    timerElement.innerText = timeLeft;
+
+    let timeIsUp = false;
+
+    const countdown = setInterval(() => {
+        if (timeLeft <= 0) {
+            clearInterval(countdown);
+            timeIsUp = true;
+            localStorage.removeItem(timeKey);
+            $('#timeUpModal').modal('show');
+
+            setTimeout(() => {
+                window.location.href = "{% url 'fraction_game_result' session.id %}";
+            }, 1000); 
+        } else {
+            timerElement.innerText = timeLeft;
+            localStorage.setItem(timeKey, timeLeft);
+            timeLeft--;
+        }
+    }, 1000);
+
+    document.getElementById('fraction-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const numerator = document.querySelector('input[name="numerator"]').value;
+        const denominator = document.querySelector('input[name="denominator"]').value;
+
+        const isCorrect = (numerator === '{{ question.correct_numerator }}') && (denominator === '{{ question.correct_denominator }}');
+        if (isCorrect) {
+            document.getElementById('correct-feedback').style.display = 'block';
+        } else {
+            document.getElementById('incorrect-feedback').style.display = 'block';
+        }
+
+        setTimeout(() => {
+            if (!timeIsUp) {
+                this.submit();
+            }
+        }, 500);
+    });
+
+    window.addEventListener('beforeunload', function() {
+        localStorage.setItem(timeKey, timeLeft);
+    });
+</script>
+
+<style>
+    .site-header {
+        height: 100vh;
+    }
+    .fraction-question-section {
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .feedback-message {
+        font-size: 18px;
+    }
+
+    .fraction-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+    }
+
+    .fraction-line {
+        width: 80px;
+        height: 2px;
+        background-color: #000;
+        margin: 5px 0;
+    }
+
+    .fraction-input {
+        width: 60px;
+        text-align: center;
+    }
+    /* Fraction styles */
+    .fraction {
+        display: inline-block;
+        text-align: center;
+        margin: 0 2px; /* Removed top margin */
+        line-height: 1;
+        font-size: 1.2em;
+        vertical-align: middle; /* Aligns with text baseline */
+    }
+    
+    .numerator {
+        display: block;
+        font-size: inherit;
+    }
+    
+    .separator {
+        display: block;
+        margin: 0;
+    }
+    
+    .denominator {
+        display: block;
+        font-size: inherit;
+        border-top: 1px solid black;
+        /* Adjusts position of the denominator */
+    }
+</style>
+{% endblock %}

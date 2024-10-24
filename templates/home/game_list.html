@@ -5,14 +5,12 @@
 
 <header class="site-header d-flex flex-column justify-content-center align-items-center">
     <div class="container">
-
-    
         <section class="trending-podcast-section section-padding" style="margin-top:10px;">
             <h2 class=" text-center mb-4 pb-3"> Games</h2>
             <div class="container">
                 <div class="row">
                     {% for game in games %}
-                    <div class="col-lg-4 col-12 my-4 mb-lg-0" onclick="location.href='{% url 'game_detail' game.id %}'">
+                    <div class="col-lg-4 col-12 my-2 mb-lg-0" onclick="location.href='{% url 'game_detail' game.id %}'">
                         <div class="custom-block custom-block-full">
                             <div class="custom-block-image-wrap">
                                 <a href="{% url 'game_detail' game.id %}">  <!-- Replace with your detail page URL -->

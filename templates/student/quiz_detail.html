@@ -5,25 +5,59 @@
     .small-quiz-image {
         max-width: 300px; /* Adjust the width as needed */
         height: auto; /* Maintain aspect ratio */
-    }    
+    }
+
+    .quiz-container {
+        background-color: #f9f9f9; /* Light background for the quiz card */
+        border-radius: 15px; /* Rounded corners */
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+        padding: 20px; /* Spacing inside the card */
+        transition: transform 0.2s; /* Animation effect on hover */
+    }
+
+    .quiz-container:hover {
+        transform: scale(1.02); /* Slight zoom effect on hover */
+    }
+
+    .btn-start {
+        background-color: #28a745; /* Green button */
+        color: white; /* White text */
+        font-size: 1.25rem; /* Larger font size */
+        padding: 10px 20px; /* More padding for a button-like appearance */
+        border-radius: 5px; /* Slightly rounded corners */
+        transition: background-color 0.3s; /* Animation for hover effect */
+    }
+
+    .btn-start:hover {
+        background-color: #218838; /* Darker green on hover */
+    }
+
+    h2 {
+        color: #343a40; /* Darker text color for contrast */
+        font-weight: bold; /* Bold font for emphasis */
+    }
+
+    .quiz-title {
+        margin-bottom: 20px; /* Space below the title */
+    }
 </style>
-<div class="decrease">
-    <header class="site-header d-flex flex-column justify-content-center align-items-center">
-        <div class="container " style="margin-top: 150px">
-            <div class="title text-center">
-                <h3 class="text-white font-weight-bold">{{quiz.title}}</h3>
-                <p  class="text-white font-weight-bold">{{ quiz.description }}</p>
+
+<header class="site-header d-flex flex-column justify-content-center align-items-center">
+    <div class="container mt-5 pt-5">
+        <div class="row">
+            <div class="col-lg-12 col-12 text-center">
+                <h2 class="text-center mb-4 mt-4 quiz-title">{{ quiz.title }}</h2>
             </div>
             <div class="text-center mb-4">
-                <img src="{{ quiz.picture.url }}" alt="Quiz Image" class="img-fluid small-quiz-image">
+                <div class="quiz-container">
+                    <img src="{{ quiz.picture.url }}" alt="Quiz Image" class="img-fluid small-quiz-image">
+                </div>
             </div>
-        
             <div class="text-center mt-4">
-                <a href="{% url 'quiz_attempt' quiz.id %}" class="btn btn-primary">Attempt Quiz</a>
+                <a href="{% url 'quiz_attempt' quiz.id %}" class="btn btn-start">Start Quiz</a>
             </div>
         </div>
-    </header>
-</div>
-
+    </div>
+</header>
 
 {% endblock %}

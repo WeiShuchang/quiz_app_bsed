@@ -39,10 +39,11 @@
         padding: 15px;
         font-size: 16px;
     }
-    p, {
+    .lesson-text, p{
         color:black;
         font-weight:bold;
     }
+   
 </style>
 
 <header class="site-header d-flex flex-column justify-content-center align-items-center">
@@ -63,10 +64,10 @@
                     </p>
                     <ul class="list-group">
                         <li class="list-group-item">
-                            <strong>Numerator:</strong> The number above the fraction bar, indicating how many parts are being considered.
+                            <h6>Numerator:</h6> <strong>The number above the fraction bar, indicating how many parts are being considered.</strong>
                         </li>
                         <li class="list-group-item">
-                            <strong>Denominator:</strong> The number below the fraction bar, indicating the total number of equal parts into which the whole is divided.
+                            <h6>Denominator:</h6> <strong>The number below the fraction bar, indicating the total number of equal parts into which the whole is divided.</strong>
                         </li>
                     </ul>
                 </div>
@@ -74,20 +75,19 @@
                 <div class="lesson-examples mt-4">
                     <h3 class="lesson-title">Examples:</h3>
 
-                    
-
-                    <div class="card mb-3">
-                        <div class="card-body">
+                    <div class="card mb-3" >
+                        <div class="card-body" style="color: black; font-weight: bold;">
                             <p>In the fraction <span class="fraction"><span class="numerator">3</span><span class="denominator">4</span></span>,</p>
                             <div class="image-placeholder" style="text-align: center; margin: 20px 0;">
-                                <img src="{% static 'images/topics/three_fourths.png' %}" alt="Fraction Example Image" class="img-fluid"  style="max-width: 250px; height: auto;">
+                                <img src="{% static 'images/topics/three_fourths.png' %}" alt="Fraction Example Image" class="img-fluid" style="max-width: 250px; height: auto;">
                             </div>
                             <ul>
-                                <li>The numerator <strong>3</strong> indicates that 3 parts are being considered.</li>
-                                <li>The denominator <strong>4</strong> indicates that the whole is divided into 4 equal parts.</li>
+                                <li><p>The numerator <strong>3</strong> indicates that 3 parts are being considered.</p></li>
+                                <li><p>The denominator <strong>4</strong> indicates that the whole is divided into 4 equal parts.</p></li>
                             </ul>
                         </div>
                     </div>
+                    
 
                     
 
@@ -98,8 +98,8 @@
                                 <img src="{% static 'images/topics/six_seventh.png' %}" alt="Fraction Example Image" class="img-fluid"  style="max-width: 250px; height: auto;">
                             </div>
                             <ul>
-                                <li>The numerator <strong>6</strong> indicates that 6 parts are being considered.</li>
-                                <li>The denominator <strong>7</strong> indicates that the whole is divided into 7 equal parts.</li>
+                                <li><p>The numerator <strong>6</strong> indicates that 6 parts are being considered.</p></li>
+                                <li><p>The denominator <strong>7</strong> indicates that the whole is divided into 7 equal parts.</p></li>
                             </ul>
                         </div>
                     </div>
@@ -114,25 +114,39 @@
 
                     <ul class="list-group">
                         <li class="list-group-item">
-                            <strong>Proper Fractions:</strong> The numerator is less than the denominator.<br>
-                            <em>Examples:</em> <br>
-                            <span class="fraction"><span class="numerator">2</span><span class="denominator">5</span></span>,  
-                            <span class="fraction"><span class="numerator">11</span><span class="denominator">17</span></span>,           
-                            <span class="fraction"><span class="numerator">3</span><span class="denominator">13</span></span> 
+                            <h6>Proper Fractions:</h6> 
+                            <p>The numerator is less than the denominator.</p>
+                            <strong><em>Examples:</em></strong> <br>
+                            <p>
+                                <span class="fraction" style="margin-right: 15px;"><span class="numerator">2</span><span class="denominator">5</span></span>
+                                <span class="fraction" style="margin-right: 15px;"><span class="numerator">11</span><span class="denominator">17</span></span>
+                                <span class="fraction" style="margin-right: 15px;"><span class="numerator">3</span><span class="denominator">13</span></span>
+                            </p>
                         </li>
+                        
                         <li class="list-group-item">
-                            <strong>Improper Fractions:</strong> The numerator is greater than or equal to the denominator.<br>
-                            <em>Examples:</em> <br>
-                            <span class="fraction"><span class="numerator">5</span><span class="denominator">5</span></span>, 
-                            <span class="fraction"><span class="numerator">9</span><span class="denominator">7</span></span>, 
-                            <span class="fraction"><span class="numerator">25</span><span class="denominator">8</span></span>
+                            <h6>Improper Fractions:</h6> 
+                            <p>The numerator is greater than or equal to the denominator.</p>
+                            <strong><em>Examples:</em></strong> <br>
+                            <p>
+                                <span class="fraction" style="margin-right: 15px;"><span class="numerator">5</span><span class="denominator">5</span></span>
+                                <span class="fraction" style="margin-right: 15px;"><span class="numerator">9</span><span class="denominator">7</span></span>
+                                <span class="fraction" style="margin-right: 15px;"><span class="numerator">25</span><span class="denominator">8</span></span>
+                            </p>
                         </li>
+                        
                         <li class="list-group-item">
-                            <strong>Mixed Numbers:</strong> A whole number combined with a proper fraction.<br>
-                            <em>Examples:</em><br> 1 <span class="fraction"><span class="numerator">1</span><span class="denominator">2</span></span>, 
-                            12 <span class="fraction"><span class="numerator">3</span><span class="denominator">7</span></span>, 
-                            20 <span class="fraction"><span class="numerator">1</span><span class="denominator">5</span></span>
+                            <h6>Mixed Numbers:</h6> 
+                            <p>A whole number combined with a proper fraction.</p>
+                            <strong><em>Examples:</em></strong> <br>
+                            <p>
+                                1 <span class="fraction" style="margin-right: 15px;"><span class="numerator">1</span><span class="denominator">2</span></span>
+                                12 <span class="fraction" style="margin-right: 15px;"><span class="numerator">3</span><span class="denominator">7</span></span>
+                                20 <span class="fraction" style="margin-right: 15px;"><span class="numerator">1</span><span class="denominator">5</span></span>
+                            </p>
                         </li>
+                        
+                        
                     </ul>
                 </div>
             </div>

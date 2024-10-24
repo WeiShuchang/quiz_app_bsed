@@ -1,11 +1,11 @@
 {% extends "home/base.html" %}
-
+{% load fraction_filters %}
 {% block content %}
 <style>
     .small-quiz-image {
         max-width: 300px; /* Adjust the width as needed */
         height: auto; /* Maintain aspect ratio */
-    }    
+    }
 </style>
 
 <header class="site-header d-flex flex-column justify-content-center align-items-center">
@@ -24,16 +24,23 @@
 <div class="container">
     <form method="post">
         {% csrf_token %}
+        <div class="form-group text-center py-3">
+            <label for="name" class="text-dark">Enter Your Name:</label>
+            <input type="text" id="name" name="name" class="form-control" required ;>
+        </div>
         <div class="quiz-questions">
             {% for question in questions %}
             <div class="question-card mb-4">
-                <h4 class="question-text">{{ question.text }}</h4>
+                <h4 class="question-text">{% with question.text|format_fraction as formatted_question %} 
+                    {{ formatted_question|safe }} {% endwith %}</h4>
                 <div class="choices">
                     {% for choice in question.choices.all %}
                     <div class="choice-option" data-question-id="{{ question.id }}" data-choice-id="{{ choice.id }}">
                         <input class="form-check-input" type="radio" name="question_{{ question.id }}" id="choice_{{ choice.id }}" value="{{ choice.id }}" required>
                         <label class="form-check-label" for="choice_{{ choice.id }}">
-                            {{ choice.text }}
+                          
+                            {% with choice.text|format_fraction as formatted_question %} 
+                    {{ formatted_question|safe }} {% endwith %}
                         </label>
                     </div>
                     {% endfor %}
@@ -48,6 +55,7 @@
     </form>
 </div>
 
+<!-- CSS for styling -->
 <style>
     .question-card {
         background: #f9f9f9;
@@ -130,25 +138,54 @@
         background: #0097a7;
         border-color: #0097a7;
     }
+    /* Fraction styles */
+    .fraction {
+        display: inline-block;
+        text-align: center;
+        margin: 0 2px; /* Removed top margin */
+        line-height: 1;
+        font-size: 1em;
+        vertical-align: middle; /* Aligns with text baseline */
+    }
+    
+    .numerator {
+        display: block;
+        font-size: inherit;
+    }
+    
+    .separator {
+        display: block;
+        margin: 0;
+    }
+    
+    .denominator {
+        display: block;
+        font-size: inherit;
+        border-top: 1px solid black;
+        /* Adjusts position of the denominator */
+    }
 </style>
-
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const choiceOptions = document.querySelectorAll('.choice-option');
+        const questions = document.querySelectorAll('.quiz-questions .question-card');
 
-        choiceOptions.forEach(option => {
-            option.addEventListener('click', function() {
-                const radioButton = this.querySelector('input[type="radio"]');
-                radioButton.checked = true;
+        questions.forEach(question => {
+            const choiceOptions = question.querySelectorAll('.choice-option');
 
-                // Remove 'selected' class from previously selected choice
-                document.querySelectorAll('.choice-option.selected').forEach(selectedOption => {
-                    selectedOption.classList.remove('selected');
+            choiceOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const radioButton = this.querySelector('input[type="radio"]');
+                    radioButton.checked = true;
+
+                    // Remove 'selected' class from previously selected choice within the same question
+                    choiceOptions.forEach(selectedOption => {
+                        selectedOption.classList.remove('selected');
+                    });
+
+                    // Add 'selected' class to the clicked choice
+                    this.classList.add('selected');
                 });
-
-                // Add 'selected' class to the clicked choice
-                this.classList.add('selected');
             });
         });
     });

@@ -2,11 +2,9 @@
 {% load static %}
 
 {% block content %}
-
-
 <header class="site-header d-flex flex-column justify-content-center align-items-center">
     <div class="container">
-        <section class="latest-podcast-section section-padding pb-0" id="section_2" ">
+        <section class="latest-podcast-section section-padding pb-0" id="section_2">
             <div class="container-fluid">
                 <div class="row justify-content-center">
                     <div class="col-lg-10 col-12">
@@ -33,12 +31,18 @@
                                             <small class="ms-auto">Total Questions: <span class="badge">{{ game.total_questions }}</span></small>
                                         </div>
 
-                                        <p>{{ game.description }}</p>
-
-                                        <form method="post" action="{% url 'game_play' game.id %}" class="text-center">
+                                        <p><strong>{{ game.description }}</strong></p>
+                                        
+                                        <!-- Single input field for player name -->
+                                        <form method="post" class="text-center">
                                             {% csrf_token %}
                                             <input type="text" name="user_name" placeholder="Enter your name" class="form-control mb-2" required>
-                                            <button type="submit" class="btn btn-primary">Start Game</button>
+                                            <p><strong>Choose Game Mode:</strong></p>
+                                            <!-- Button for general game mode -->
+                                            <button type="submit" formaction="{% url 'game_play' game.id %}" class="btn btn-primary my-1">Multiple Choice</button>
+
+                                            <!-- Button for fraction game mode -->
+                                            <button type="submit" formaction="{% url 'fraction_game_play' game.id %}" method="post" class="btn btn-success my-1">Type The Answer</button>
                                         </form>
                                     </div>
                                 </div>
@@ -50,5 +54,4 @@
         </section>
     </div>
 </header>
-
 {% endblock content %}

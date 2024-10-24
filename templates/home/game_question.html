@@ -1,62 +1,132 @@
 {% extends "home/base.html" %}
 
+{% load fraction_filters %}
+
 {% block content %}
 <header class="site-header d-flex flex-column justify-content-center align-items-center min-vh-100">
     <div class="container">
         <section class="game-question-section">
             <div class="card shadow-sm p-4">
                 <h6 class="text-center text-muted mb-4">Question {{ current_question_number }} of {{ session.game.total_questions }}</h6>
-                <h3 class="text-dark text-center mb-4">{{ question.text }}</h3>
-                
+                <h3 class="text-dark text-center mb-1">
+                    {% with question.text|format_fraction as formatted_question %} 
+                        {{ formatted_question|safe }} 
+                    {% endwith %}
+                </h3>
+
                 <form id="quiz-form" method="post">
                     {% csrf_token %}
                     <div class="d-flex justify-content-center flex-wrap">
-                        
                         {% for choice in choices %}
-                        <div class="choice-circle text-center mx-1">
-                            <input type="radio" name="choice" value="{{ choice.text }}" id="choice-{{ forloop.counter }}" class="form-check-input visually-hidden" required>
+                        <div class="choice-circle text-center mx-1" data-correct="{{ choice.is_correct|yesno:'true,false' }}">
+                            <input type="radio" name="choice" value="{{ choice.id }}" id="choice-{{ forloop.counter }}" class="form-check-input visually-hidden" required>
                             <label class="form-check-label" for="choice-{{ forloop.counter }}">
-                                <span class="circle">{{ choice.text }}</span>
+                                <span class="circle">
+                                    {% with choice.text|format_fraction as formatted_choice %} 
+                                        {{ formatted_choice|safe }}
+                                    {% endwith %}
+                                </span>
                             </label>
                         </div>
                         {% endfor %}
                     </div>
-                    <div class="d-flex justify-content-center align-items-center mt-5 text-center">
-                        <button type="submit" class="btn btn-primary">Submit Answer</button>
-                      
-                    </div>
+
                     <div class="d-flex justify-content-between align-items-center mt-3">
-                        <p class="mb-0">Time left: <span id="timer" class="font-weight-bold">{{ game.duration }}</span> seconds</p>
+                        <p class="mb-0">Time left: <span id="timer" class="font-weight-bold"></span> seconds</p>
                     </div>
                 </form>
+
+                <!-- Correct/Incorrect Feedback -->
+                <div id="correct-feedback" class="feedback-message text-center" style="display: none;">
+                    <p class="text-success">✔ Correct!</p>
+                </div>
+                <div id="incorrect-feedback" class="feedback-message text-center" style="display: none;">
+                    <p class="text-danger">✖ Incorrect!</p>
+                </div>
             </div>
         </section>
     </div>
 </header>
 
+
+<!-- Time's up Modal -->
+<div class="modal fade" id="timeUpModal" tabindex="-1" aria-labelledby="timeUpModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h6 class="modal-title text-danger" id="timeUpModalLabel">Time's Up!</h6>
+            </div>
+            <div class="modal-body text-center">
+                The time for this question has run out. You will be redirected to the results page.
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+
 <script>
-    let timeLeft = {{ session.duration }};
+    const sessionId = {{ session.id }};
+    const timeKey = `timeLeft_${sessionId}`;
+    let timeLeft = localStorage.getItem(timeKey) !== null ? localStorage.getItem(timeKey) : {{ time_left }};
+    timeLeft = parseInt(timeLeft, 10);
     const timerElement = document.getElementById('timer');
+    timerElement.innerText = timeLeft;
+
+    let timeIsUp = false;
 
     const countdown = setInterval(() => {
         if (timeLeft <= 0) {
             clearInterval(countdown);
-            alert('Time is up!');
-            window.location.href = "{% url 'game_result' session.id %}";
+            timeIsUp = true;
+            localStorage.removeItem(timeKey);
+            $('#timeUpModal').modal('show'); // Show the Bootstrap modal
+
+            // Redirect to results after showing the modal for 2 seconds
+            setTimeout(() => {
+                window.location.href = "{% url 'game_result' session.id %}";
+            }, 2000); // 2000 ms = 2 seconds
         } else {
             timerElement.innerText = timeLeft;
+            localStorage.setItem(timeKey, timeLeft);
             timeLeft--;
         }
     }, 1000);
 
-    // Automatically submit the form when a choice is clicked
+    // Handle choice selection
     document.querySelectorAll('input[name="choice"]').forEach((radio) => {
         radio.addEventListener('change', function() {
-            // Submit the form when the radio button is checked
-            document.getElementById('quiz-form').submit();
+            const selectedChoice = this.closest('.choice-circle');
+            const isCorrect = selectedChoice.getAttribute('data-correct') === 'true';
+
+            // Highlight the selected choice
+            if (isCorrect) {
+                selectedChoice.querySelector('.circle').style.backgroundColor = '#28a745'; // Green
+                document.getElementById('correct-feedback').style.display = 'block';
+            } else {
+                selectedChoice.querySelector('.circle').style.backgroundColor = '#dc3545'; // Red
+                document.getElementById('incorrect-feedback').style.display = 'block';
+            }
+
+            // Disable further selection and proceed after 2 seconds
+            setTimeout(() => {
+                if (!timeIsUp) { // Check if time is not up before submitting
+                    document.getElementById('quiz-form').submit();
+                }
+            }, 500);
         });
     });
+
+    // Redirect to results page after modal button click
+    document.getElementById('redirectBtn').addEventListener('click', function() {
+        window.location.href = "{% url 'game_result' session.id %}";
+    });
+
+    window.addEventListener('beforeunload', function() {
+        localStorage.setItem(timeKey, timeLeft);
+    });
 </script>
+
 
 <style>
     .site-header {
@@ -73,10 +143,10 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin: 5px; /* Reduced margin for better fit */
+        margin: 5px;
     }
     .circle {
-        width: 80px; /* Smaller size */
+        width: 80px;
         height: 80px;
         border-radius: 50%;
         background-color: #007bff;
@@ -84,12 +154,12 @@
         justify-content: center;
         align-items: center;
         color: white;
-        font-size: 12px; /* Adjusted font size */
+        font-size: 12px;
         font-weight: bold;
         padding: 5px;
-        text-align: center; /* Align text inside the circle */
+        text-align: center;
         transition: background-color 0.3s ease;
-        word-wrap: break-word; /* Allow longer text to wrap */
+        word-wrap: break-word;
     }
     .choice-circle:hover .circle {
         background-color: #0056b3;
@@ -99,9 +169,50 @@
         clip: rect(0, 0, 0, 0);
         pointer-events: none;
     }
-    .form-check-input:checked + label .circle {
-        background-color: #28a745; /* Change color for selected option */
+    .feedback-message {
+        font-size: 18px;
     }
+
+    /* Fraction styles */
+    .fraction {
+        display: inline-block;
+        text-align: center;
+        margin: 0 2px; /* Removed top margin */
+        line-height: 1;
+        font-size: 1.2em;
+        vertical-align: middle; /* Aligns with text baseline */
+    }
+    
+    .numerator {
+        display: block;
+        font-size: inherit;
+    }
+    
+    .separator {
+        display: block;
+        margin: 0;
+    }
+    
+    .denominator {
+        display: block;
+        font-size: inherit;
+        border-top: 1px solid black;
+        /* Adjusts position of the denominator */
+    }
+    
+    /* New styles for choice circles */
+    .choice-circle .denominator {
+        border-top: 1px solid white;
+    }
+    
+    .operator {
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 1.2em;
+        margin: 0 5px;
+    
+    }
+    
     .btn-primary {
         background-color: #007bff;
         border: none;
@@ -113,15 +224,32 @@
     /* Media query for mobile view */
     @media (max-width: 576px) {
         .d-flex {
-            flex-direction: row; /* Change to row for mobile view */
-            justify-content: center; /* Center choices horizontally */
-            flex-wrap: wrap; /* Allow wrapping for small screens */
+            flex-direction: row;
+            justify-content: center;
+            flex-wrap: wrap;
         }
         .choice-circle {
-            flex: 1 1 auto; /* Allow flexibility */
-            min-width: 70px; /* Ensure they don’t get too small */
-            max-width: 80px; /* Set a maximum width for better alignment */
+            flex: 1 1 auto;
+            min-width: 70px;
+            max-width: 80px;
         }
     }
+
+    .modal-header, .modal-body, .modal-footer {
+        display: flex;
+        justify-content: center; /* Center contents horizontally */
+        align-items: center; /* Center contents vertically */
+        text-align: center; /* Center text */
+    }
+    
+    .modal-footer {
+        justify-content: center; /* Center footer buttons */
+    }
+
+    $('#timeUpModal').modal({
+        backdrop: 'static',
+        keyboard: false
+    });
+    
 </style>
 {% endblock %}

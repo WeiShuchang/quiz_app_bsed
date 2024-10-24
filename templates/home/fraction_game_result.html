@@ -1,0 +1,42 @@
+{% extends "home/base.html" %}
+
+{% load custom_filters %}
+
+{% block content %}
+<header class="site-header d-flex flex-column justify-content-center align-items-center ">
+    <div class="container mt-4">
+        <section class="result-section section-padding">
+            <div class="card shadow-lg p-5 text-center">
+                <h3 class="text-muted mb-4">Game Over</h3>
+                <h4 class=" mb-3">{{ session.game.name }}</h4>
+                <div class="score-summary mb-4">
+                    <h5>Your Score</h5>
+                    <h4 class="font-weight-bold">{{ session.score }} / {{ session.game.total_questions }}</h4>
+                </div>
+
+                <!-- Dynamic progress bar for score visualization -->
+                <div class="progress mb-4" style="height: 30px;">
+                    <div class="progress-bar" role="progressbar" 
+                         style="width: {{ session.score|percentage:session.game.total_questions }}%;" 
+                         aria-valuenow="{{ session.score }}" 
+                         aria-valuemin="0" 
+                         aria-valuemax="{{ session.game.total_questions }}">
+                        {{ session.score|percentage:session.game.total_questions }}%
+                    </div>
+                </div>
+
+                <p class="mb-4">Thank you for playing the <strong>{{ session.game.name }}</strong>! We hope you had fun!</p>
+
+                <div class="row">
+                    <div class="">
+                    
+                    
+                        <a href="{% url 'game_detail' session.game.id %}" class="btn btn-success btn-block my-1">Play Again</a>
+                        <a href="{% url 'game_list' %}" class="btn btn-primary btn-block my-1">Back to Games</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</header>
+{% endblock %}

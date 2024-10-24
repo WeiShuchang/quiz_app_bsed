@@ -55,14 +55,13 @@ def quiz_list(request):
     categories = Category.objects.prefetch_related('quizzes').all()
     return render(request, 'teacher/quiz_list.html', {'categories': categories})
 
-
 def quiz_create(request):
     if request.method == 'POST':
         form = QuizForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             messages.success(request, 'Quiz Created Successfully!')
-            return redirect('quiz_list')
+            return redirect('quiz_list_teacher')
     else:
         form = QuizForm()
     return render(request, 'teacher/quiz_form.html', {'form': form})
@@ -127,7 +126,7 @@ def delete_quiz(request, quiz_id):
     if request.method == 'POST':
         quiz.delete()
         messages.success(request, 'Quiz deleted successfully.')
-        return redirect('quiz_list')  # Redirect to the list of quizzes or another page
+        return redirect('quiz_list_teacher')  # Redirect to the list of quizzes or another page
 
     return render(request, 'teacher/quiz_details.html', {'quiz': quiz})
 

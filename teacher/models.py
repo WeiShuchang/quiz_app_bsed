@@ -8,6 +8,9 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from userprofile.models import UserProfile
+from django.conf import settings
+from django.db import models
+
 
 class Category(models.Model):
     name = models.CharField(max_length=255)
@@ -85,15 +88,14 @@ class Choice(models.Model):
         return self.text
 
 class QuizAttempt(models.Model):
-    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, related_name='attempts')
-    user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
     score = models.IntegerField()
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='attempts')
+    category = models.CharField(max_length=255)
+    name = models.CharField(max_length=255)
+    attempt_date = models.DateTimeField(auto_now_add=True, null=True)
 
     def __str__(self):
-        return f"{self.user.username} - {self.quiz.title}"
-
-
+        return f"{self.name}'s Game on {self.attempt_date}"
 
 class Game(models.Model):
     name = models.CharField(max_length=255)  # Name of the game
@@ -141,11 +143,12 @@ class GameChoice(models.Model):
         return self.text
 
 class GameSession(models.Model):
-    player_name = models.CharField(max_length=255)  # Store the player's name
+    player_name = models.CharField(max_length=255)
     game = models.ForeignKey(Game, on_delete=models.CASCADE)
     score = models.IntegerField(default=0)
     date_played = models.DateTimeField(auto_now_add=True)
-    current_question = models.IntegerField(default=0) 
+    current_question = models.IntegerField(default=0)
+    selected_answers = models.JSONField(default=dict)  # Store selected answers as a dictionary
 
     def __str__(self):
         return f"{self.player_name}'s Game on {self.date_played}"
@@ -157,3 +160,22 @@ class UserScore(models.Model):
 
     def __str__(self):
         return f"{self.player_name}: {self.score} on {self.date_recorded}"
+    
+class FractionGameQuestion(GameQuestion):
+
+    correct_numerator = models.IntegerField()
+    correct_denominator = models.IntegerField()
+    
+    def __str__(self):
+        return f"Question {self.text} (Fraction: {self.correct_numerator}/{self.correct_denominator})"
+    
+class FractionGameSession(models.Model):
+    player_name = models.CharField(max_length=255)
+    game = models.ForeignKey(Game, on_delete=models.CASCADE)
+    score = models.IntegerField(default=0)
+    current_question = models.IntegerField(default=0)
+    selected_answers = models.JSONField(default=dict)  # Add this line to store user answers
+    date_played = models.DateTimeField(auto_now_add=True)  # Automatically set the date when created
+
+    def __str__(self):
+        return f"{self.player_name}'s Game on {self.date_played}"

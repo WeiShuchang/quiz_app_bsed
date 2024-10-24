@@ -19,6 +19,7 @@ from django.conf.urls.static import static
 from django.urls import path, include
 from . import views, settings
 
+
 urlpatterns = [
     path('', views.home, name="landing"),
 
@@ -40,6 +41,16 @@ urlpatterns = [
     path('lessons/', views.lessons_list, name='lessons_list'),
     path('lesson/<slug:lesson_slug>/', views.lesson_detail, name='lesson_detail'),
     path('quizzes/', views.quiz_list, name='quiz_list'), 
+
+    path('game/<int:game_id>/fraction_play/', views.fraction_game_play, name='fraction_game_play'),
+    
+
+    path('fraction_game/<int:game_id>/', views.fraction_game_play, name='fraction_game_play'),
+    path('fraction_game/question/<int:session_id>/', views.fraction_game_question, name='fraction_game_question'),
+    path('fraction_game/result/<int:session_id>/', views.fraction_game_result, name='fraction_game_result'),
+    path('leaderboard/', views.leaderboard_view, name='leaderboard'),
+  
+  
 ]
 
 if settings.DEBUG:

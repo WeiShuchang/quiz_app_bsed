@@ -1,0 +1,168 @@
+{% extends "home/base.html" %}
+{% load static %}
+
+{% block content %}
+<style>
+    h1 {
+        text-align: center;
+        color: #0056b3;
+        margin-top: 20px;
+    }
+
+    h2 {
+        color: #343a40;
+        margin-top: 30px;
+        text-align: center;
+    }
+
+    .table-container {
+        margin: 20px auto;
+    }
+
+    .table {
+        width: 100%;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: center;
+    }
+
+    th {
+        background-color: #f8f9fa;
+        font-weight: bold;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    tr:hover {
+        background-color: #e9ecef;
+    }
+
+    .no-scores {
+        color: #6c757d;
+        font-style: italic;
+    }
+
+    .game-title {
+        color: #0056b3; /* Color for game titles */
+        border: 2px solid #0056b3; /* Border for the game title section */
+        padding: 10px;
+        border-radius: 5px;
+    
+        background-color: #e9ecef; /* Light background for contrast */
+    }
+
+    .multiple-choice-group {
+        border: 2px solid #0056b3; /* Border for Multiple Choice Games */
+        border-radius: 5px;
+        padding: 20px;
+        margin: 40px 20px; /* Increased margin for separation */
+        background-color: #f8f9fa; /* Light background for the entire group */
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Shadow effect */
+    }
+
+    .type-answer-group {
+        border: 2px solid #28a745; /* Green border for Type The Answer Games */
+        border-radius: 5px;
+        padding: 20px;
+        margin: 40px 20px; /* Increased margin for separation */
+        background-color: #f8f9fa; /* Light background for the entire group */
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Shadow effect */
+    }
+
+    .type-answer-group .game-title {
+        border: 2px solid #28a745; /* Green border for the game title section */
+    }
+</style>
+
+<header class="site-header d-flex flex-column justify-content-center align-items-center">
+    <h2 class="text-center "><strong>Leaderboard</strong></h2>
+</header>
+
+<div class="">
+    <h2 class="text-center text-primary"><strong>Multiple Choice Games</strong></h2>
+    <div class="container">
+        <div class="row">
+            {% for game_name, leaderboard in multiple_choice_leaderboards.items %}
+                <div class="col-md-6 table-container">
+                    <div class="game-title">
+                        <h5 class="text-center text-primary">{{ game_name }}</h5>
+                    </div>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Player Name</th>
+                                <th>Score</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for player in leaderboard %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ player.player_name }}</td>
+                                    <td>{{ player.max_score }}</td>
+                                </tr>
+                            {% empty %}
+                                <tr>
+                                    <td colspan="3" class="no-scores">No scores available.</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% if forloop.counter|divisibleby:2 %}
+                    </div><div class="row">
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div class="">
+    <h2 class="text-center mt-5 text-success"><strong>Type The Answer Games</strong></h2>
+    <div class="container">
+        <div class="row">
+            {% for game_name, leaderboard in type_the_answer_leaderboards.items %}
+                <div class="col-md-6 table-container">
+                    <div class="game-title">
+                        <h5 class="text-center text-success">{{ game_name }}</h5>
+                    </div>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Player Name</th>
+                                <th>Score</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for player in leaderboard %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ player.player_name }}</td>
+                                    <td>{{ player.max_score }}</td>
+                                </tr>
+                            {% empty %}
+                                <tr>
+                                    <td colspan="3" class="no-scores">No scores available.</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% if forloop.counter|divisibleby:2 %}
+                    </div><div class="row">
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
