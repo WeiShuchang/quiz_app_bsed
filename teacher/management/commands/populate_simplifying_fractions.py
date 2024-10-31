@@ -13,166 +13,165 @@ class Command(BaseCommand):
             return
 
         questions_data = [
-            # First 10 questions
-            {
-                'text': 'Simplify 4/8',
-                'choices': [
-                    {'text': '1/2', 'is_correct': True},
-                    {'text': '1/4', 'is_correct': False},
-                    {'text': '1/8', 'is_correct': False},
-                ]
-            },
-            {
-                'text': 'Simplify 6/9',
-                'choices': [
-                    {'text': '2/3', 'is_correct': True},
-                    {'text': '1/3', 'is_correct': False},
-                    {'text': '3/9', 'is_correct': False},
-                ]
-            },
-            {
-                'text': 'Simplify 10/20',
-                'choices': [
-                    {'text': '1/2', 'is_correct': True},
-                    {'text': '1/5', 'is_correct': False},
-                    {'text': '3/4', 'is_correct': False},
-                ]
-            },
-            {
-                'text': 'Simplify 9/12',
-                'choices': [
-                    {'text': '3/4', 'is_correct': True},
-                    {'text': '2/3', 'is_correct': False},
-                    {'text': '1/2', 'is_correct': False},
-                ]
-            },
-            {
-                'text': 'Simplify 15/45',
-                'choices': [
-                    {'text': '1/3', 'is_correct': True},
-                    {'text': '1/2', 'is_correct': False},
-                    {'text': '1/5', 'is_correct': False},
-                ]
-            },
-            {
-                'text': 'Simplify 8/16',
-                'choices': [
-                    {'text': '1/2', 'is_correct': True},
-                    {'text': '3/8', 'is_correct': False},
-                    {'text': '1/4', 'is_correct': False},
-                ]
-            },
-            {
-                'text': 'Simplify 12/24',
-                'choices': [
-                    {'text': '1/2', 'is_correct': True},
-                    {'text': '1/3', 'is_correct': False},
-                    {'text': '3/4', 'is_correct': False},
-                ]
-            },
-            {
-                'text': 'Simplify 14/28',
-                'choices': [
-                    {'text': '1/2', 'is_correct': True},
-                    {'text': '3/5', 'is_correct': False},
-                    {'text': '2/3', 'is_correct': False},
-                ]
-            },
-            {
-                'text': 'Simplify 20/30',
-                'choices': [
-                    {'text': '2/3', 'is_correct': True},
-                    {'text': '1/3', 'is_correct': False},
-                    {'text': '1/2', 'is_correct': False},
-                ]
-            },
-            {
-                'text': 'Simplify 5/25',
-                'choices': [
-                    {'text': '1/5', 'is_correct': True},
-                    {'text': '1/2', 'is_correct': False},
-                    {'text': '1/4', 'is_correct': False},
-                ]
-            },
-            # Additional 10 questions
-            {
-                'text': 'Simplify 3/12',
-                'choices': [
-                    {'text': '1/4', 'is_correct': True},
-                    {'text': '1/3', 'is_correct': False},
-                    {'text': '1/2', 'is_correct': False},
-                ]
-            },
-            {
-                'text': 'Simplify 7/14',
-                'choices': [
-                    {'text': '1/2', 'is_correct': True},
-                    {'text': '3/4', 'is_correct': False},
-                    {'text': '2/3', 'is_correct': False},
-                ]
-            },
-            {
-                'text': 'Simplify 6/18',
-                'choices': [
-                    {'text': '1/3', 'is_correct': True},
-                    {'text': '1/6', 'is_correct': False},
-                    {'text': '2/3', 'is_correct': False},
-                ]
-            },
-            {
-                'text': 'Simplify 18/36',
-                'choices': [
-                    {'text': '1/2', 'is_correct': True},
-                    {'text': '1/3', 'is_correct': False},
-                    {'text': '2/3', 'is_correct': False},
-                ]
-            },
-            {
-                'text': 'Simplify 10/50',
-                'choices': [
-                    {'text': '1/5', 'is_correct': True},
-                    {'text': '1/2', 'is_correct': False},
-                    {'text': '1/3', 'is_correct': False},
-                ]
-            },
-            {
-                'text': 'Simplify 25/50',
-                'choices': [
-                    {'text': '1/2', 'is_correct': True},
-                    {'text': '1/3', 'is_correct': False},
-                    {'text': '2/3', 'is_correct': False},
-                ]
-            },
-            {
-                'text': 'Simplify 9/18',
-                'choices': [
-                    {'text': '1/2', 'is_correct': True},
-                    {'text': '1/3', 'is_correct': False},
-                    {'text': '1/4', 'is_correct': False},
-                ]
-            },
-            {
-                'text': 'Simplify 16/64',
-                'choices': [
-                    {'text': '1/4', 'is_correct': True},
-                    {'text': '1/2', 'is_correct': False},
-                    {'text': '3/4', 'is_correct': False},
-                ]
-            },
             {
                 'text': 'Simplify 12/16',
                 'choices': [
+                    {'text': '4/5', 'is_correct': False},
                     {'text': '3/4', 'is_correct': True},
-                    {'text': '1/2', 'is_correct': False},
                     {'text': '2/3', 'is_correct': False},
                 ]
             },
             {
-                'text': 'Simplify 8/24',
+                'text': 'Simplify 18/24',
                 'choices': [
-                    {'text': '1/3', 'is_correct': True},
-                    {'text': '1/4', 'is_correct': False},
+                    {'text': '2/3', 'is_correct': True},
+                    {'text': '5/6', 'is_correct': False},
+                    {'text': '3/1', 'is_correct': False},
+                ]
+            },
+            {
+                'text': 'Simplify 21/28',
+                'choices': [
+                    {'text': '5/7', 'is_correct':  False},
+                    {'text': '3/4', 'is_correct': True},
+                    {'text': '2/3', 'is_correct': False},
+                ]
+            },
+            {
+                'text': 'Simplify 45/60',
+                'choices': [
+                    {'text': '3/4', 'is_correct': True},
+                    {'text': '2/3', 'is_correct': False},
+                    {'text': '5/8', 'is_correct': False},
+                ]
+            },
+            {
+                'text': 'Simplify 14/18',
+                'choices': [
+                    {'text': '7/9', 'is_correct': True},
+                    {'text': '5/7', 'is_correct': False},
+                    {'text': '7/8', 'is_correct': False},
+                ]
+            },
+            {
+                'text': 'Simplify 16/24',
+                'choices': [
+                    {'text': '4/5', 'is_correct': False},
+                    {'text': '3/4', 'is_correct': False},
+                    {'text': '2/3', 'is_correct': True},
+                ]
+            },
+            {
+                'text': 'Simplify 24/36',
+                'choices': [
+                    {'text': '4/5', 'is_correct': False},
+                    {'text': '2/3', 'is_correct': True},
+                    {'text': '4/9', 'is_correct': False},
+                ]
+            },
+            {
+                'text': 'Simplify 30/45',
+                'choices': [
+                    {'text': '2/3', 'is_correct': True},
+                    {'text': '3/5', 'is_correct': False},
+                    {'text': '4/7', 'is_correct': False},
+                ]
+            },
+            {
+                'text': 'Simplify 10/25',
+                'choices': [
+                    {'text': '3/5', 'is_correct': False},
+                    {'text': '2/5', 'is_correct': True},
                     {'text': '1/2', 'is_correct': False},
+                ]
+            },
+            {
+                'text': 'Simplify 8/12',
+                'choices': [
+                    {'text': '4/5', 'is_correct': False},
+                    {'text': '3/4', 'is_correct': False},
+                    {'text': '2/3', 'is_correct': True},
+                ]
+            },
+            {
+                'text': 'Simplify 24/30',
+                'choices': [
+                    {'text': '2/3', 'is_correct': False},
+                    {'text': '3/5', 'is_correct': False},
+                    {'text': '4/5', 'is_correct': True},
+                ]
+            },
+            {
+                'text': 'Simplify 35/50',
+                'choices': [
+                    {'text': '2/5', 'is_correct': False},
+                    {'text': '5/7', 'is_correct': False},
+                    {'text': '7/10', 'is_correct': True},
+                ]
+            },
+          
+            {
+                'text': 'Simplify 40/56',
+                'choices': [
+                    {'text': '4/7', 'is_correct': True},
+                    {'text': '5/7', 'is_correct': False},
+                    {'text': '3/5', 'is_correct': False},
+                ]
+            },
+            {
+                'text': 'Simplify 27/36',
+                'choices': [
+                    {'text': '3/4', 'is_correct': True},
+                    {'text': '4/9', 'is_correct': False},
+                    {'text': '2/3', 'is_correct': False},
+                ]
+            },
+            {
+                'text': 'Simplify 22/44',
+                'choices': [
+                    {'text': '2/3', 'is_correct': False},
+                    {'text': '1/4', 'is_correct': False},
+                    {'text': '1/2', 'is_correct': True},
+                ]
+            },
+            {
+                'text': 'Simplify 50/75',
+                'choices': [
+                    {'text': '5/6', 'is_correct': False},
+                    {'text': '2/3', 'is_correct': True},
+                    {'text': '4/5', 'is_correct': False},
+                ]
+            },
+            {
+                'text': 'Simplify 28/32',
+                'choices': [
+                    {'text': '2/3', 'is_correct': False},
+                    {'text': '3/4', 'is_correct': False},
+                    {'text': '7/8', 'is_correct': True},
+                ]
+            },
+            {
+                'text': 'Simplify 90/98',
+                'choices': [
+                    {'text': '20/33', 'is_correct': False},
+                    {'text': '45/49', 'is_correct': True},
+                    {'text': '25/34', 'is_correct': False},
+                ]
+            },
+            {
+                'text': 'Simplify 30/42',
+                'choices': [
+                    {'text': '5/7', 'is_correct': True},
+                    {'text': '1/3', 'is_correct': False},
+                    {'text': '5/6', 'is_correct': False},
+                ]
+            },
+            {
+                'text': 'Simplify 9/15',
+                'choices': [
+                    {'text': '2/5', 'is_correct': False},
+                    {'text': '3/4', 'is_correct': False},
+                    {'text': '3/5', 'is_correct': True},
                 ]
             },
         ]

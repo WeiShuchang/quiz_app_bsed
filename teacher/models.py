@@ -132,7 +132,7 @@ class GameQuestion(models.Model):
     text = models.CharField(max_length=1024)
 
     def __str__(self):
-        return self.text
+        return f"{self.game} : {self.text} "
 
 class GameChoice(models.Model):
     question = models.ForeignKey(GameQuestion, on_delete=models.CASCADE, related_name='game_choices')
@@ -140,7 +140,7 @@ class GameChoice(models.Model):
     is_correct = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.text
+        return f"{self.text} : {self.is_correct} : {self.question} "
 
 class GameSession(models.Model):
     player_name = models.CharField(max_length=255)
@@ -162,13 +162,20 @@ class UserScore(models.Model):
         return f"{self.player_name}: {self.score} on {self.date_recorded}"
     
 class FractionGameQuestion(GameQuestion):
-
     correct_numerator = models.IntegerField()
     correct_denominator = models.IntegerField()
     
     def __str__(self):
         return f"Question {self.text} (Fraction: {self.correct_numerator}/{self.correct_denominator})"
     
+    def save(self, *args, **kwargs):
+        # Ensure the parent instance (GameQuestion) is not created
+        if not self.pk:  # Check if the instance is being created
+            super(FractionGameQuestion, self).save(*args, **kwargs)  # Save only this instance
+        else:
+            # Handle updates if needed
+            super(FractionGameQuestion, self).save(*args, **kwargs)
+        
 class FractionGameSession(models.Model):
     player_name = models.CharField(max_length=255)
     game = models.ForeignKey(Game, on_delete=models.CASCADE)

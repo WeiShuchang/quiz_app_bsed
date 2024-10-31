@@ -2,8 +2,47 @@
 {% load static %}
 
 {% block content %}
+<style>
+    .custom-btn {
+        transition: background-color 0.3s ease, color 0.3s ease;
+        color: #333; /* Default text color */
+        margin-top: 1rem;
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+    }
 
+    /* Default colors for each button */
+    .custom-btn.objectives {
+        background-color: #5ce1e6;
+    }
+    .custom-btn.lessons {
+        background-color: #ffde59;
+    }
+    .custom-btn.games {
+        background-color: #7ed957;
+    }
+    .custom-btn.quizzes {
+        background-color: #f98585;
+    }
 
+    /* Hover colors for each button */
+    .custom-btn.objectives:hover {
+        background-color: #3cb4c2;
+        color: #ffffff;
+    }
+    .custom-btn.lessons:hover {
+        background-color: #f0c70e;
+        color: #ffffff;
+    }
+    .custom-btn.games:hover {
+        background-color: #63b34f;
+        color: #ffffff;
+    }
+    .custom-btn.quizzes:hover {
+        background-color: #e04545;
+        color: #ffffff;
+    }
+</style>
 
 <main>
     <section class="hero-section">
@@ -15,11 +54,10 @@
                         <h1 class="text-white">FRACTION-matiks</h1>
     
                         <p class="text-white">Your All-In-One Fraction App</p>
-    
-                        
-                        <a href="{% url "lessons_list" %}" class="btn custom-btn smoothscroll mt-3 text-light mx-2" >Lessons</a>
-                        <a href="{% url "game_list" %}" class="btn custom-btn smoothscroll mt-3 text-light mx-2 ">Games</a>
-                        <a href="{% url "quiz_list" %}" class="btn custom-btn smoothscroll mt-3 text-light mx-2">Quizzes</a>
+                        <a href="{% url 'quiz_list' %}" class="btn custom-btn objectives smoothscroll">Objectives</a>
+                        <a href="{% url 'lessons_list' %}" class="btn custom-btn lessons smoothscroll">Lessons</a>
+                        <a href="{% url 'game_list' %}" class="btn custom-btn games smoothscroll">Games</a>
+                        <a href="{% url 'quiz_list' %}" class="btn custom-btn quizzes smoothscroll">Quizzes</a>
                     </div>
 
                  

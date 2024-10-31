@@ -7,6 +7,7 @@ from teacher.models import Category, Game, GameSession, GameQuestion, GameChoice
 from .forms import LoginForm, SignupForm
 from django.views.decorators.csrf import csrf_exempt
 from django.db.models import F
+from django.db.models import Case, When, IntegerField, Count
 
 import random 
 
@@ -69,7 +70,24 @@ def custom_logout_view(request):
     return redirect('landing')  # Replace 'landing' with your landing page URL name
 
 def game_list(request):
-    games = Game.objects.all()  # Fetch all games
+    # Define the custom order
+    order = [
+        "Simplifying Fractions Game",
+        "Mixed & Improper Fractions Game",
+        "Adding Fractions Game",
+        "Subtracting Fractions Game",
+        "Multiplying Fractions Game",
+        "Dividing Fractions Game"
+    ]
+
+    # Annotate each game with a specific order based on the title
+    games = Game.objects.annotate(
+        custom_order=Case(
+            *[When(name=title, then=index) for index, title in enumerate(order)],
+            output_field=IntegerField()
+        )
+    ).order_by("custom_order")
+
     return render(request, 'home/game_list.html', {'games': games})
 
 def game_detail(request, game_id):
@@ -92,7 +110,11 @@ def game_question(request, session_id):
 
     # Fetch the question list from session if it's a returning game
     if 'question_list' not in request.session or session.current_question == 0:
-        questions = list(GameQuestion.objects.filter(game=session.game).order_by('?'))
+        # Get questions that have at least one GameChoice
+        questions = list(GameQuestion.objects.filter(game=session.game)
+                         .annotate(choice_count=Count('game_choices'))
+                         .filter(choice_count__gt=0)
+                         .order_by('?'))
         request.session['question_list'] = [q.id for q in questions]
     else:
         question_ids = request.session['question_list']
@@ -138,8 +160,6 @@ def game_question(request, session_id):
     }
 
     return render(request, 'home/game_question.html', context)
-
-
 
 def game_result(request, session_id):
     session = get_object_or_404(GameSession, id=session_id)
@@ -252,34 +272,48 @@ def fraction_game_result(request, session_id):
     return render(request, 'home/fraction_game_result.html', context)
 
 def leaderboard_view(request):
-    games = Game.objects.all()
+    # Define the custom order
+    order = [
+        "Simplifying Fractions Game",
+        "Mixed & Improper Fractions Game",
+        "Adding Fractions Game",
+        "Subtracting Fractions Game",
+        "Multiplying Fractions Game",
+        "Dividing Fractions Game"
+    ]
 
+    # Annotate games with a custom order field
+    games = Game.objects.annotate(
+        custom_order=Case(
+            *[When(name=title, then=index) for index, title in enumerate(order)],
+            output_field=IntegerField()
+        )
+    ).order_by("custom_order")
+
+    # Initialize leaderboard dictionaries
     multiple_choice_leaderboards = {}
     type_the_answer_leaderboards = {}
 
+    # Populate leaderboards in the custom order
     for game in games:
-        # Fetch all scores for multiple choice games
+        # Multiple Choice Leaderboard
         mc_scores = (
             GameSession.objects
             .filter(game=game)
             .values('player_name')
-            .annotate(max_score=F('score'))  # Use F expression to keep original score
+            .annotate(max_score=F('score'))  # Retain original score
         )
-
-        # Sort and get the top 5 by max score
-        sorted_mc_scores = sorted(mc_scores, key=lambda x: x['max_score'], reverse=True)[:5]
+        sorted_mc_scores = sorted(mc_scores, key=lambda x: x['max_score'], reverse=True)[:10]
         multiple_choice_leaderboards[game.name] = sorted_mc_scores
 
-        # Fetch all scores for type the answer games
+        # Type the Answer Leaderboard
         ta_scores = (
             FractionGameSession.objects
             .filter(game=game)
             .values('player_name')
-            .annotate(max_score=F('score'))  # Use F expression to keep original score
+            .annotate(max_score=F('score'))  # Retain original score
         )
-
-        # Sort and get the top 5 by max score
-        sorted_ta_scores = sorted(ta_scores, key=lambda x: x['max_score'], reverse=True)[:5]
+        sorted_ta_scores = sorted(ta_scores, key=lambda x: x['max_score'], reverse=True)[:10]
         type_the_answer_leaderboards[game.name] = sorted_ta_scores
 
     context = {

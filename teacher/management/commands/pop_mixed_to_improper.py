@@ -7,7 +7,7 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         try:
             # Fetch the game with the name "Mixed to Improper Fractions Game"
-            game = Game.objects.get(name="Mixed and Improper Fractions Game")
+            game = Game.objects.get(name="Mixed & Improper Fractions Game")
 
             # List of mixed fractions to convert to improper fractions
             mixed_fractions = [
@@ -18,16 +18,16 @@ class Command(BaseCommand):
                 (5, 3, 4),  # 5 3/4 = (5*4 + 3)/4 = 23/4
                 (1, 4, 7),  # 1 4/7 = (1*7 + 4)/7 = 11/7
                 (6, 5, 6),  # 6 5/6 = (6*6 + 5)/6 = 41/6
-                (0, 3, 8),  # 0 3/8 = (0*8 + 3)/8 = 3/8
+                (4, 7, 9),  # 0 3/8 = (0*8 + 3)/8 = 3/8
                 (2, 5, 9),  # 2 5/9 = (2*9 + 5)/9 = 23/9
                 (3, 4, 10), # 3 4/10 = (3*10 + 4)/10 = 34/10
-                (5, 0, 1),  # 5 0/1 = (5*1 + 0)/1 = 5/1
+                (2, 3, 5),  # 5 0/1 = (5*1 + 0)/1 = 5/1
                 (1, 1, 5),  # 1 1/5 = (1*5 + 1)/5 = 6/5
                 (2, 4, 6),  # 2 4/6 = (2*6 + 4)/6 = 16/6
                 (4, 1, 3),  # 4 1/3 = (4*3 + 1)/3 = 13/3
                 (7, 2, 4),  # 7 2/4 = (7*4 + 2)/4 = 30/4
                 (8, 3, 8),  # 8 3/8 = (8*8 + 3)/8 = 67/8
-                (0, 5, 2),  # 0 5/2 = (0*2 + 5)/2 = 5/2
+                (2, 11, 12),  # 0 5/2 = (0*2 + 5)/2 = 5/2
                 (1, 6, 10), # 1 6/10 = (1*10 + 6)/10 = 16/10
                 (3, 3, 7),  # 3 3/7 = (3*7 + 3)/7 = 24/7
                 (5, 2, 5),  # 5 2/5 = (5*5 + 2)/5 = 27/5
