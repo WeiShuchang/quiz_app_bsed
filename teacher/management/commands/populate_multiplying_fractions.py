@@ -23,11 +23,11 @@ class Command(BaseCommand):
                 ]
             },
             {
-                'text': 'What is 2/3 × 3/4?',
+                'text': 'What is 3/40 × 35/12?',
                 'choices': [
-                    {'text': '1/2', 'is_correct': False},
-                    {'text': '1/4', 'is_correct': False},
-                    {'text': '1/2', 'is_correct': True},
+                    {'text': '21/4', 'is_correct': False},
+                    {'text': '19/26', 'is_correct': False},
+                    {'text': '7/32', 'is_correct': True},
                 ]
             },
             {
@@ -47,11 +47,11 @@ class Command(BaseCommand):
                 ]
             },
             {
-                'text': 'What is 2/5 × 1/2?',
+                'text': 'What is 10/17 × 3/2?',
                 'choices': [
-                    {'text': '1/5', 'is_correct': True},
-                    {'text': '2/5', 'is_correct': False},
-                    {'text': '1/4', 'is_correct': False},
+                    {'text': '15/7', 'is_correct': True},
+                    {'text': '7/15', 'is_correct': False},
+                    {'text': '30/19', 'is_correct': False},
                 ]
             },
             {
@@ -79,11 +79,11 @@ class Command(BaseCommand):
                 ]
             },
             {
-                'text': 'What is 3/4 × 2/3?',
+                'text': 'What is 5/4 × 8/30?',
                 'choices': [
-                    {'text': '1/2', 'is_correct': True},
-                    {'text': '1/3', 'is_correct': False},
-                    {'text': '2/3', 'is_correct': False},
+                    {'text': '1/3', 'is_correct': True},
+                    {'text': '1/4', 'is_correct': False},
+                    {'text': '1/5', 'is_correct': False},
                 ]
             },
             {
@@ -119,19 +119,19 @@ class Command(BaseCommand):
                 ]
             },
             {
-                'text': 'What is 3/5 × 5/6?',
+                'text': 'What is 3/20 × 4/20?',
                 'choices': [
-                    {'text': '1/2', 'is_correct': False},
-                    {'text': '5/6', 'is_correct': False},
-                    {'text': '1/2', 'is_correct': True},
+                    {'text': '7/20', 'is_correct': False},
+                    {'text': '3/100', 'is_correct': True},
+                    {'text': '1/200', 'is_correct': False},
                 ]
             },
             {
                 'text': 'What is 4/9 × 2/3?',
                 'choices': [
                     {'text': '8/27', 'is_correct': True},
-                    {'text': '2/3', 'is_correct': False},
-                    {'text': '1/3', 'is_correct': False},
+                    {'text': '6/27', 'is_correct': False},
+                    {'text': '3/4', 'is_correct': False},
                 ]
             },
             {

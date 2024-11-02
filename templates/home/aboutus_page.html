@@ -1,0 +1,212 @@
+{% extends "home/base.html" %}
+{% load static %}
+{% block content %}
+
+<style>
+    p, ul li{
+     color:black;
+   
+     font-size:1.1rem;
+    }
+ </style>
+ 
+ <header class="site-header d-flex flex-column justify-content-center align-items-center">
+     <h2 class="text-center"><strong>About</strong></h2>
+ </header>
+ 
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8 col-12 mx-auto">
+                <div class=" mb-3">
+                    <div class="section-title-wrap mb-4">
+                        <h4 class="section-title">About the App</h4>
+                    </div>
+
+                    <p>FRACTION-matiks is an educational web-based application developed to help users learn and practice basic fraction concepts. The application contains three sections:</p>
+                    <ul>
+                        <li><strong>Lessons:</strong> Users can access different lessons on fractions.</li>
+                        <li><strong>Games:</strong> Users can access games to improve their fraction-related skills.</li>
+                        <li><strong>Quiz:</strong> Users can access quizzes to assess their learning. Teachers can also create custom quizzes for students, which will appear in this section.</li>
+                    </ul>
+                    <img src="images/medium-shot-young-people-recording-podcast.jpg" class="about-image mt-5 img-fluid" alt="">
+
+                </div>
+            </div>
+
+          
+            <section class="about-developers-section pb-0" id="section_2">
+                <div class="container">
+                    <div class="row justify-content-center">
+            
+                        <div class="col-lg-10 col-12">
+                            <div class="section-title-wrap mb-5">
+                                <h4 class="section-title">About the Developers</h4>
+                            </div>
+            
+                            <div class="row">
+                                
+                                <!-- Paul Mike Dominguez -->
+                                <div class="col-lg-3 col-12">
+                                    <div class="custom-block-icon-wrap">
+                                        <div class="custom-block-image-wrap custom-block-image-detail-page">
+                                            <img src="{% static "aboutus/paul_mike.jpg" %}"
+                                                class="custom-block-image img-fluid" alt="Paul Mike Dominguez">
+                                        </div>
+                                    </div>
+                                </div>
+            
+                                <div class="col-lg-9 col-12">
+                                    <div class="custom-block-info">
+                                        <div class="custom-block-top d-flex mb-1">
+                                            <small>
+                                                <i class="bi-geo-alt"></i>
+                                                Kibungan, Benguet
+                                            </small>
+                                            <small class="ms-auto">BSED Mathematics</small>
+                                        </div>
+            
+                                        <h2 class="mb-2">Paul Mike Dominguez</h2>
+            
+                                        <p>Paul Mike is a fourth-year college student majoring in Secondary Education with a focus on Mathematics at Benguet State University, La Trinidad Campus. His passion for teaching and dedication to mathematics have been invaluable in creating the educational content of FRACTION-matiks.</p>
+            
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <hr>
+            
+                            <!-- Aaron T. Bayangan -->
+                            <div class="row">
+                                <div class="col-lg-3 col-12">
+                                    <div class="custom-block-icon-wrap">
+                                        <div class="custom-block-image-wrap custom-block-image-detail-page">
+                                            <img src="{% static "aboutus/aaron_bayangan.jpg" %}"
+                                                class="custom-block-image img-fluid" alt="Aaron T. Bayangan">
+                                        </div>
+                                    </div>
+                                </div>
+            
+                                <div class="col-lg-9 col-12">
+                                    <div class="custom-block-info">
+                                        <div class="custom-block-top d-flex mb-1">
+                                            <small>
+                                                <i class="bi-geo-alt"></i>
+                                                Buguias, Benguet
+                                            </small>
+                                            <small class="ms-auto">BSED Mathematics</small>
+                                        </div>
+            
+                                        <h2 class="mb-2">Aaron T. Bayangan</h2>
+            
+                                        <p>Aaron is a dedicated fourth-year student majoring in Secondary Education with a focus on Mathematics at Benguet State University, La Trinidad Campus. His contributions have been essential to the development of the lessons in FRACTION-matiks, aligning the content with effective teaching strategies.</p>
+            
+                                        
+                                    </div>
+                                </div>
+                            </div>        
+                            <hr>
+                            <!-- Lucilene A. Mesa -->
+                            <div class="row">
+                                <div class="col-lg-3 col-12">
+                                    <div class="custom-block-icon-wrap">
+                                        <div class="custom-block-image-wrap custom-block-image-detail-page">
+                                            <img src="{% static "aboutus/lucilene.jpg" %}"
+                                                class="custom-block-image img-fluid" alt="Lucilene A. Mesa">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-9 col-12">
+                                    <div class="custom-block-info">
+                                        <div class="custom-block-top d-flex mb-1">
+                                            <small>
+                                                <i class="bi-geo-alt"></i>
+                                                Buguias, Benguet
+                                            </small>
+                                            <small class="ms-auto">BSED Mathematics</small>
+                                        </div>
+
+                                        <h2 class="mb-2">Lucilene A. Mesa</h2>
+
+                                        <p>Lucilene is a fourth-year student in the Secondary Education Mathematics program at Benguet State University, La Trinidad Campus. Her keen insight into mathematics education and commitment to making learning accessible have greatly contributed to the depth and clarity of FRACTION-matiks.</p>
+
+                                      
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <!-- Mark Kent Dela Cruz -->
+                            <div class="row">
+                                <div class="col-lg-3 col-12">
+                                    <div class="custom-block-icon-wrap">
+                                        <div class="custom-block-image-wrap custom-block-image-detail-page">
+                                            <img src="{% static "aboutus/mark_kent.jpg" %}"
+                                                class="custom-block-image img-fluid" alt="Mark Kent Dela Cruz">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-9 col-12">
+                                    <div class="custom-block-info">
+                                        <div class="custom-block-top d-flex mb-1">
+                                            <small>
+                                                <i class="bi-geo-alt"></i>
+                                                Kabayan, Benguet
+                                            </small>
+                                            <small class="ms-auto">BSED Mathematics</small>
+                                        </div>
+
+                                        <h2 class="mb-2">Mark Kent Dela Cruz</h2>
+
+                                        <p>Mark Kent, a fourth-year student at Benguet State University in the Secondary Education Mathematics program, is known for his methodical approach to mathematics and teaching. His skills in structuring lessons and developing engaging content have been pivotal in the creation of FRACTION-matiks.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr>
+                            <!--Maron Harvey Sanchez-->
+                            <div class="row">
+                                <div class="col-lg-3 col-12">
+                                    <div class="custom-block-icon-wrap">
+                                        <div class="custom-block-image-wrap custom-block-image-detail-page">
+                                            <img src="{% static "aboutus/maron_sanchez.png" %}"
+                                                class="custom-block-image img-fluid" alt="Lucilene A. Mesa">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-9 col-12">
+                                    <div class="custom-block-info">
+                                        <div class="custom-block-top d-flex mb-1">
+                                            <small>
+                                                <i class="bi-geo-alt"></i>
+                                                La Trinidad, Benguet
+                                            </small>
+                                            <small class="ms-auto">BSIT - Information Technology</small>
+                                        </div>
+
+                                        <h2 class="mb-2">Maron Harvey Sanchez</h2>
+
+                                        <p>Maron is a fourth-year student in the Information Technology program at Benguet State University, La Trinidad Campus. His technical skills and experience with web development helped form the complete and functional Web Application Fraction-matiks.</p>
+
+                                      
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+
+        </div>
+    </div>
+
+{% endblock content %}

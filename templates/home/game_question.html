@@ -85,7 +85,7 @@
             // Redirect to results after showing the modal for 2 seconds
             setTimeout(() => {
                 window.location.href = "{% url 'game_result' session.id %}";
-            }, 2000); // 2000 ms = 2 seconds
+            }, 1500); // 2000 ms = 2 seconds
         } else {
             timerElement.innerText = timeLeft;
             localStorage.setItem(timeKey, timeLeft);

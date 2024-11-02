@@ -13,166 +13,165 @@ class Command(BaseCommand):
             return
 
         questions_data = [
-            # First 10 questions
+          
             {
-                'text': 'What is 1/2 ÷ 1/4?',
+                'text': '1/2 ÷ 1/3?',
                 'choices': [
-                    {'text': '2', 'is_correct': True},
-                    {'text': '1/4', 'is_correct': False},
-                    {'text': '1/2', 'is_correct': False},
-                ]
-            },
-            {
-                'text': 'What is 3/4 ÷ 1/2?',
-                'choices': [
+                    {'text': '1/6', 'is_correct': False},
                     {'text': '3/2', 'is_correct': True},
                     {'text': '2/3', 'is_correct': False},
+                ]
+            },
+             {
+                'text': '1/4 ÷ 1/5?',
+                'choices': [
+                    {'text': '1/20', 'is_correct': False},
+                    {'text': '4/5', 'is_correct': False},
+                    {'text': '5/4', 'is_correct': True},
+                ]
+            },
+            {
+                'text': '1/6 ÷ 1/7?',
+                'choices': [
+                    {'text': '1/42', 'is_correct': False},
+                    {'text': '7/6', 'is_correct': True},
+                    {'text': '6/7', 'is_correct': False},
+                ]
+            },
+             {
+                'text': '1/9 ÷ 1/10?',
+                'choices': [
+                    {'text': '1/19', 'is_correct': False},
+                    {'text': '9/10', 'is_correct': False},
+                    {'text': '10/9', 'is_correct': True},
+                ]
+            },
+            {
+                'text': '2/4 ÷ 2/5?',
+                'choices': [
+                    {'text': '5/4', 'is_correct': True},
+                    {'text': '4/5', 'is_correct': False},
                     {'text': '1/2', 'is_correct': False},
                 ]
             },
-            {
-                'text': 'What is 5/6 ÷ 1/3?',
+             {
+                'text': '2/6 ÷ 2/7?',
                 'choices': [
-                    {'text': '5/2', 'is_correct': True},
-                    {'text': '5/9', 'is_correct': False},
-                    {'text': '3/6', 'is_correct': False},
+                    {'text': '7/6', 'is_correct': True},
+                    {'text': '1/3', 'is_correct': False},
+                    {'text': '6/7', 'is_correct': False},
                 ]
             },
-            {
-                'text': 'What is 7/8 ÷ 1/2?',
+             {
+                'text': '2/8 ÷ 2/9?',
                 'choices': [
-                    {'text': '7/4', 'is_correct': True},
-                    {'text': '1/2', 'is_correct': False},
-                    {'text': '14/8', 'is_correct': False},
+                    {'text': '1/18', 'is_correct': False},
+                    {'text': '9/8', 'is_correct': True},
+                    {'text': '4/9', 'is_correct': False},
                 ]
             },
-            {
-                'text': 'What is 9/10 ÷ 3/5?',
+             {
+                'text': '3/4 ÷ 3/5?',
                 'choices': [
-                    {'text': '3/2', 'is_correct': True},
-                    {'text': '1/2', 'is_correct': False},
-                    {'text': '3/5', 'is_correct': False},
+                    {'text': '4/5', 'is_correct': False},
+                    {'text': '5/4', 'is_correct': True},
+                    {'text': '9/20', 'is_correct': False},
                 ]
             },
-            {
-                'text': 'What is 4/5 ÷ 2/3?',
-                'choices': [
-                    {'text': '6/5', 'is_correct': True},
-                    {'text': '5/6', 'is_correct': False},
-                    {'text': '2/5', 'is_correct': False},
-                ]
-            },
-            {
-                'text': 'What is 8/9 ÷ 2/3?',
-                'choices': [
-                    {'text': '4/3', 'is_correct': True},
-                    {'text': '2/3', 'is_correct': False},
-                    {'text': '8/6', 'is_correct': False},
-                ]
-            },
-            {
-                'text': 'What is 3/7 ÷ 3/5?',
-                'choices': [
-                    {'text': '5/7', 'is_correct': True},
-                    {'text': '7/5', 'is_correct': False},
-                    {'text': '1', 'is_correct': False},
-                ]
-            },
-            {
-                'text': 'What is 6/8 ÷ 2/4?',
-                'choices': [
-                    {'text': '3', 'is_correct': True},
-                    {'text': '4/3', 'is_correct': False},
-                    {'text': '6/4', 'is_correct': False},
-                ]
-            },
-            {
-                'text': 'What is 7/9 ÷ 1/3?',
-                'choices': [
-                    {'text': '7/3', 'is_correct': True},
-                    {'text': '3/7', 'is_correct': False},
-                    {'text': '9/7', 'is_correct': False},
-                ]
-            },
-            # Additional 10 questions
-            {
-                'text': 'What is 5/8 ÷ 1/4?',
-                'choices': [
-                    {'text': '5/2', 'is_correct': True},
-                    {'text': '5/4', 'is_correct': False},
-                    {'text': '1/2', 'is_correct': False},
-                ]
-            },
-            {
-                'text': 'What is 10/11 ÷ 2/3?',
-                'choices': [
-                    {'text': '15/11', 'is_correct': True},
-                    {'text': '5/11', 'is_correct': False},
-                    {'text': '10/3', 'is_correct': False},
-                ]
-            },
-            {
-                'text': 'What is 12/15 ÷ 4/5?',
-                'choices': [
-                    {'text': '1', 'is_correct': True},
-                    {'text': '2/3', 'is_correct': False},
-                    {'text': '5/3', 'is_correct': False},
-                ]
-            },
-            {
-                'text': 'What is 3/5 ÷ 2/5?',
-                'choices': [
-                    {'text': '3/2', 'is_correct': True},
-                    {'text': '2/3', 'is_correct': False},
-                    {'text': '5/3', 'is_correct': False},
-                ]
-            },
-            {
-                'text': 'What is 4/7 ÷ 1/2?',
+             {
+                'text': '3/7 ÷ 3/8?',
                 'choices': [
                     {'text': '8/7', 'is_correct': True},
-                    {'text': '4/14', 'is_correct': False},
-                    {'text': '1/7', 'is_correct': False},
+                    {'text': '24/21', 'is_correct': False},
+                    {'text': '7/8', 'is_correct': False},
                 ]
             },
-            {
-                'text': 'What is 2/9 ÷ 1/3?',
+             {
+                'text': '4/5 ÷ 4/6?',
                 'choices': [
-                    {'text': '2/3', 'is_correct': True},
-                    {'text': '1/3', 'is_correct': False},
-                    {'text': '3/2', 'is_correct': False},
-                ]
-            },
-            {
-                'text': 'What is 9/16 ÷ 3/8?',
-                'choices': [
-                    {'text': '3/2', 'is_correct': True},
-                    {'text': '2/3', 'is_correct': False},
-                    {'text': '1/2', 'is_correct': False},
-                ]
-            },
-            {
-                'text': 'What is 7/12 ÷ 5/6?',
-                'choices': [
-                    {'text': '7/10', 'is_correct': True},
+                    {'text': '6/5', 'is_correct': True},
+                    {'text': '12/10', 'is_correct': False},
                     {'text': '5/6', 'is_correct': False},
-                    {'text': '10/7', 'is_correct': False},
                 ]
             },
             {
-                'text': 'What is 2/3 ÷ 4/5?',
+                'text': '4/9 ÷ 4/10?',
                 'choices': [
-                    {'text': '5/6', 'is_correct': True},
-                    {'text': '6/5', 'is_correct': False},
-                    {'text': '2/5', 'is_correct': False},
+                    {'text': '5/4', 'is_correct': False},
+                    {'text': '10/9', 'is_correct': True},
+                    {'text': '5/6', 'is_correct': False},
+                ]
+            },
+             {
+                'text': '5/8 ÷ 5/9?',
+                'choices': [
+                    {'text': '9/8', 'is_correct': True},
+                    {'text': '8/9', 'is_correct': False},
+                    {'text': '1/9', 'is_correct': False},
                 ]
             },
             {
-                'text': 'What is 1/4 ÷ 3/8?',
+                'text': '6/7 ÷ 6/8?',
                 'choices': [
-                    {'text': '2/3', 'is_correct': True},
-                    {'text': '3/2', 'is_correct': False},
-                    {'text': '4/3', 'is_correct': False},
+                    {'text': '4/5', 'is_correct': False},
+                    {'text': '8/7', 'is_correct': True},
+                    {'text': '7/8', 'is_correct': False},
+                ]
+            },
+            {
+                'text': '7/8 ÷ 7/9?',
+                'choices': [
+                    {'text': '9/8', 'is_correct': True},
+                    {'text': '7/9', 'is_correct': False},
+                    {'text': '8/9', 'is_correct': False},
+                ]
+            },
+              {
+                'text': '8/9 ÷ 8/10?',
+                'choices': [
+                    {'text': '10/9', 'is_correct': True},
+                    {'text': '8/10', 'is_correct': False},
+                    {'text': '9/8', 'is_correct': False},
+                ]
+            },
+             {
+                'text': '10/14 ÷ 10/15?',
+                'choices': [
+                    {'text': '10/15', 'is_correct': False},
+                    {'text': '15/14', 'is_correct': True},
+                    {'text': '10/14', 'is_correct': False},
+                ]
+            },
+            {
+                'text': '10/16 ÷ 8/7?',
+                'choices': [
+                    {'text': '35/64', 'is_correct': True},
+                    {'text': '8/5', 'is_correct': False},
+                    {'text': '7/8', 'is_correct': False},
+                ]
+            },
+              {
+                'text': '10/3 ÷ 12/26?',
+                'choices': [
+                    {'text': '10/39', 'is_correct': False},
+                    {'text': '13/6', 'is_correct': False},
+                    {'text': '65/36', 'is_correct': True},
+                ]
+            },
+               {
+                'text': '1/2 ÷ 11/27?',
+                'choices': [
+                    {'text': '27/11', 'is_correct': False},
+                    {'text': '12/11', 'is_correct': False},
+                    {'text': '27/22', 'is_correct': True},
+                ]
+            },
+              {
+                'text': '2/4 ÷ 2/3?',
+                'choices': [
+                    {'text': '23/24', 'is_correct': False},
+                    {'text': '3/4', 'is_correct': True},
+                    {'text': '34/25', 'is_correct': False},
                 ]
             },
         ]

@@ -49,6 +49,8 @@ urlpatterns = [
     path('fraction_game/question/<int:session_id>/', views.fraction_game_question, name='fraction_game_question'),
     path('fraction_game/result/<int:session_id>/', views.fraction_game_result, name='fraction_game_result'),
     path('leaderboard/', views.leaderboard_view, name='leaderboard'),
+    path('objectives/', views.objectives_view, name='objectives'),
+    path('aboutus/', views.aboutus_view, name='aboutus'),
   
   
 ]

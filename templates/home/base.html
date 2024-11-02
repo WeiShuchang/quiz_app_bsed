@@ -48,9 +48,12 @@
                     <div class="collapse navbar-collapse text-primary" id="navbarNav">
                         <ul class="navbar-nav ms-lg-auto">
                             
-    
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'landing' %}">Home</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'objectives' %}">Objectives</a>
                             </li>
 
                             <li class="nav-item">
@@ -69,10 +72,9 @@
                                 <a class="nav-link" href="{% url 'leaderboard' %}">Leaderboard</a>
                             </li>
 
-                            
-                         
-
-
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'aboutus' %}">About</a>
+                            </li>
                            
                         </ul>
                     </div>
@@ -102,9 +104,11 @@
                     <div class="col-lg-7 col-md-9 col-12">
                         <ul class="site-footer-links">
                             <li class="site-footer-link-item"><a href="{% url "landing" %}" class="site-footer-link">Home</a></li>
+                            <li class="site-footer-link-item"><a href="{% url "objectives" %}" class="site-footer-link">Objectives</a></li>
                             <li class="site-footer-link-item"><a href="{% url "lessons_list" %}" class="site-footer-link">Lessons</a></li>
                             <li class="site-footer-link-item"><a href="{% url "game_list" %}" class="site-footer-link">Games</a></li>
                             <li class="site-footer-link-item"><a href="{% url "quiz_list" %}" class="site-footer-link">Quizzes</a></li>
+                            <li class="site-footer-link-item"><a href="{% url "aboutus" %}" class="site-footer-link">About</a></li>
                             <li class="site-footer-link-item"><a href="{% url "login_page" %}" class="site-footer-link">Teacher Log-in</a></li>
                         </ul>
                     </div>

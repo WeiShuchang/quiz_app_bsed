@@ -1,0 +1,91 @@
+{% extends "home/base.html" %}
+
+{% block content %}
+<style>
+   p, ul li{
+    color:black;
+  
+    font-size:1.2rem;
+   }
+</style>
+
+<header class="site-header d-flex flex-column justify-content-center align-items-center">
+    <h2 class="text-center"><strong>Objectives</strong></h2>
+</header>
+
+<section class="objectives-section " id="section_objectives">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8 col-12 mx-auto">
+                <div class="pb-5 mb-5">
+                    <div class="section-title-wrap mb-4">
+                        <h4 class="section-title">General Objective</h4>
+                    </div>
+                    <p>The primary objective of this application is to facilitate users in learning and practicing operations related to fractions.</p>
+
+                    <div class="section-title-wrap mb-4 mt-5">
+                        <h4 class="section-title">Specific Objectives</h4>
+                    </div>
+                    <p>This application specifically aims to assist users in understanding the fundamental concepts of fractions and to develop proficiency in the following areas:</p>
+
+                    <ul>
+                        <li>Differentiating between various types of fractions</li>
+                        <li>Converting improper fractions to mixed fractions</li>
+                        <li>Converting mixed fractions to improper fractions</li>
+                        <li>Simplifying fractions to their simplest form</li>
+                        <li>Adding both similar and dissimilar fractions</li>
+                        <li>Subtracting both similar and dissimilar fractions</li>
+                        <li>Multiplying simple fractions</li>
+                        <li>Dividing simple fractions</li>
+                    </ul>
+
+                    <div class="section-title-wrap mb-4 mt-5">
+                        <h4 class="section-title">Learning Competencies</h4>
+                    </div>
+                    <p>These objectives align with some learning competencies outlined in the K-12 Curriculum. The table below presents the learning competencies covered in the application:</p>
+
+                    <table class="table table-bordered mt-4">
+                        <thead>
+                            <tr>
+                                <th>Grade Level</th>
+                                <th>Learning Competencies</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Grade 4 (Second Quarter)</td>
+                                <td>
+                                    <ul>
+                                        <li>Identifies proper fractions, improper fractions, and mixed numbers.</li>
+                                        <li>Changes improper fraction to mixed numbers and vice versa.</li>
+                                        <li>Changes fractions to lowest forms.</li>
+                                        <li>Performs addition and subtraction of similar and dissimilar fractions.</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Grade 5 (First Quarter)</td>
+                                <td>
+                                    <ul>
+                                        <li>Multiplies a fraction and a whole number and another fraction.</li>
+                                        <li>Divides simple fractions.</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Grade 7 (First Quarter)</td>
+                                <td>
+                                    <ul>
+                                        <li>Performs operations on rational numbers.</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

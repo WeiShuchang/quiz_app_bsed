@@ -166,7 +166,7 @@ class FractionGameQuestion(GameQuestion):
     correct_denominator = models.IntegerField()
     
     def __str__(self):
-        return f"Question {self.text} (Fraction: {self.correct_numerator}/{self.correct_denominator})"
+        return f"Game: {self.game} - {self.text} (Fraction: {self.correct_numerator}/{self.correct_denominator})"
     
     def save(self, *args, **kwargs):
         # Ensure the parent instance (GameQuestion) is not created

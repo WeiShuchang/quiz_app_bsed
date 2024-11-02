@@ -14,164 +14,163 @@ class Command(BaseCommand):
         questions_data = [
             # First 10 questions (already present)
             {
-                'text': 'What is 1/2 + 1/4?',
+                'text': '1/3 + 3/6?',
                 'choices': [
-                    {'text': '3/4', 'is_correct': True},
-                    {'text': '1/2', 'is_correct': False},
-                    {'text': '1/4', 'is_correct': False},
+                    {'text': '4/3', 'is_correct': False},
+                    {'text': '4/6', 'is_correct': False},
+                    {'text': '5/6', 'is_correct': True},
                 ]
             },
             {
-                'text': 'What is 2/5 + 1/5?',
+                'text': '1/4 + 4/12?',
                 'choices': [
-                    {'text': '3/5', 'is_correct': True},
-                    {'text': '1/2', 'is_correct': False},
-                    {'text': '4/5', 'is_correct': False},
-                ]
-            },
-            {
-                'text': 'What is 1/3 + 1/6?',
-                'choices': [
-                    {'text': '1/2', 'is_correct': True},
-                    {'text': '1/4', 'is_correct': False},
-                    {'text': '2/3', 'is_correct': False},
-                ]
-            },
-            {
-                'text': 'What is 3/8 + 1/8?',
-                'choices': [
-                    {'text': '1/2', 'is_correct': True},
-                    {'text': '1/4', 'is_correct': False},
-                    {'text': '1/8', 'is_correct': False},
-                ]
-            },
-            {
-                'text': 'What is 1/4 + 3/4?',
-                'choices': [
-                    {'text': '1', 'is_correct': True},
-                    {'text': '3/4', 'is_correct': False},
-                    {'text': '2/4', 'is_correct': False},
-                ]
-            },
-            {
-                'text': 'What is 2/3 + 1/3?',
-                'choices': [
-                    {'text': '1', 'is_correct': True},
-                    {'text': '1/2', 'is_correct': False},
-                    {'text': '2/6', 'is_correct': False},
-                ]
-            },
-            {
-                'text': 'What is 1/6 + 1/3?',
-                'choices': [
-                    {'text': '1/2', 'is_correct': True},
-                    {'text': '1/4', 'is_correct': False},
-                    {'text': '2/6', 'is_correct': False},
-                ]
-            },
-            {
-                'text': 'What is 1/8 + 1/4?',
-                'choices': [
-                    {'text': '3/8', 'is_correct': True},
-                    {'text': '1/2', 'is_correct': False},
-                    {'text': '1/8', 'is_correct': False},
-                ]
-            },
-            {
-                'text': 'What is 3/10 + 2/10?',
-                'choices': [
-                    {'text': '1/2', 'is_correct': True},
-                    {'text': '1/10', 'is_correct': False},
-                    {'text': '1/5', 'is_correct': False},
-                ]
-            },
-            {
-                'text': 'What is 1/2 + 2/3?',
-                'choices': [
-                    {'text': '7/6', 'is_correct': True},
-                    {'text': '1', 'is_correct': False},
-                    {'text': '5/6', 'is_correct': False},
-                ]
-            },
-            # Additional 10 questions
-            {
-                'text': 'What is 1/3 + 1/4?',
-                'choices': [
+                    {'text': '7/4', 'is_correct': False},
+                    {'text': '5/8', 'is_correct': False},
                     {'text': '7/12', 'is_correct': True},
-                    {'text': '1/2', 'is_correct': False},
-                    {'text': '1/3', 'is_correct': False},
+                ]
+            },
+             {
+                'text': '1/5 + 4/15?',
+                'choices': [
+                    {'text': '5/10', 'is_correct': False},
+                    {'text': '7/15', 'is_correct': True},
+                    {'text': '5/20', 'is_correct': False},
+                ]
+            },
+             {
+                'text': '1/2 + 3/8?',
+                'choices': [
+                    {'text': '4/2', 'is_correct': False},
+                    {'text': '7/4', 'is_correct': False},
+                    {'text': '7/8', 'is_correct': True},
                 ]
             },
             {
-                'text': 'What is 1/5 + 2/5?',
+                'text': '2/7 + 5/14?',
                 'choices': [
-                    {'text': '3/5', 'is_correct': True},
-                    {'text': '2/5', 'is_correct': False},
-                    {'text': '1/5', 'is_correct': False},
+                    {'text': '9/14', 'is_correct': True},
+                    {'text': '10/14', 'is_correct': False},
+                    {'text': '11/14', 'is_correct': False},
+                ]
+            },
+              {
+                'text': '3/5 + 5/20?',
+                'choices': [
+                    {'text': '8/10', 'is_correct': False},
+                    {'text': '8/15', 'is_correct': False},
+                    {'text': '17/20', 'is_correct': True},
                 ]
             },
             {
-                'text': 'What is 3/4 + 1/2?',
+                'text': '3/16 + 1/8?',
                 'choices': [
-                    {'text': '5/4', 'is_correct': True},
-                    {'text': '1', 'is_correct': False},
-                    {'text': '3/2', 'is_correct': False},
+                    {'text': '4/8', 'is_correct': False},
+                    {'text': '5/16', 'is_correct': True},
+                    {'text': '6/24', 'is_correct': False},
+                ]
+            },
+                {
+                'text': '3/25 + 5/25?',
+                'choices': [
+                    {'text': '5/25', 'is_correct': False},
+                    {'text': '6/25', 'is_correct': False},
+                    {'text': '8/25', 'is_correct': True},
                 ]
             },
             {
-                'text': 'What is 2/8 + 3/8?',
+                'text': '4/30 + 3/10?',
                 'choices': [
-                    {'text': '5/8', 'is_correct': True},
-                    {'text': '1', 'is_correct': False},
-                    {'text': '3/8', 'is_correct': False},
+                    {'text': '13/30', 'is_correct': True},
+                    {'text': '7/40', 'is_correct': False},
+                    {'text': '8/50', 'is_correct': False},
                 ]
             },
             {
-                'text': 'What is 1/7 + 3/7?',
+                'text': '6/28 + 3/4?',
                 'choices': [
-                    {'text': '4/7', 'is_correct': True},
-                    {'text': '1/2', 'is_correct': False},
-                    {'text': '1', 'is_correct': False},
+                    {'text': '9/4', 'is_correct': False},
+                    {'text': '18/16', 'is_correct': False},
+                    {'text': '27/28', 'is_correct': True},
                 ]
             },
             {
-                'text': 'What is 1/9 + 2/9?',
+                'text': '2/5 + 8/25?',
                 'choices': [
-                    {'text': '3/9', 'is_correct': False},
-                    {'text': '1/3', 'is_correct': True},
-                    {'text': '1/2', 'is_correct': False},
+                    {'text': '10/25', 'is_correct': False},
+                    {'text': '18/25', 'is_correct': True},
+                    {'text': '26/25', 'is_correct': False},
                 ]
             },
             {
-                'text': 'What is 4/10 + 3/10?',
+                'text': '1/4 + 5/16?',
                 'choices': [
-                    {'text': '7/10', 'is_correct': True},
-                    {'text': '1', 'is_correct': False},
-                    {'text': '6/10', 'is_correct': False},
+                    {'text': '9/16', 'is_correct': True},
+                    {'text': '10/16', 'is_correct': False},
+                    {'text': '11/16', 'is_correct': False},
                 ]
             },
             {
-                'text': 'What is 5/6 + 1/6?',
+                'text': '1/9 + 3/18?',
                 'choices': [
-                    {'text': '1', 'is_correct': True},
-                    {'text': '2/3', 'is_correct': False},
-                    {'text': '1/2', 'is_correct': False},
+                    {'text': '5/9', 'is_correct': False},
+                    {'text': '4/18', 'is_correct': False},
+                    {'text': '5/18', 'is_correct': True},
                 ]
             },
             {
-                'text': 'What is 1/12 + 1/4?',
+                'text': '1/18 + 2/3?',
                 'choices': [
-                    {'text': '1/3', 'is_correct': True},
-                    {'text': '1/2', 'is_correct': False},
-                    {'text': '1/4', 'is_correct': False},
+                    {'text': '3/18', 'is_correct': False},
+                    {'text': '8/18', 'is_correct': False},
+                    {'text': '13/18', 'is_correct': True},
                 ]
             },
             {
-                'text': 'What is 2/6 + 1/3?',
+                'text': '8/21 + 3/7?',
                 'choices': [
-                    {'text': '1', 'is_correct': True},
-                    {'text': '1/2', 'is_correct': False},
-                    {'text': '2/3', 'is_correct': False},
+                    {'text': '11/7', 'is_correct': False},
+                    {'text': '17/21', 'is_correct': True},
+                    {'text': '23/35', 'is_correct': False},
+                ]
+            },
+            {
+                'text': '7/36 + 4/9?',
+                'choices': [
+                    {'text': '23/36', 'is_correct': True},
+                    {'text': '28/36', 'is_correct': False},
+                    {'text': '33/36', 'is_correct': False},
+                ]
+            },
+            {
+                'text': '12/35 + 4/7?',
+                'choices': [
+                    {'text': '16/7', 'is_correct': False},
+                    {'text': '32/35', 'is_correct': True},
+                    {'text': '48/42', 'is_correct': False},
+                ]
+            },
+            {
+                'text': '7/24 + 2/3?',
+                'choices': [
+                    {'text': '9/18', 'is_correct': False},
+                    {'text': '16/21', 'is_correct': False},
+                    {'text': '23/24', 'is_correct': True},
+                ]
+            },
+            {
+                'text': '2/9 + 5/9?',
+                'choices': [
+                    {'text': '4/9', 'is_correct': True},
+                    {'text': '5/9', 'is_correct': False},
+                    {'text': '6/9', 'is_correct': False},
+                ]
+            },
+            {
+                'text': '11/20 + 6/20?',
+                'choices': [
+                    {'text': '17/20', 'is_correct': True},
+                    {'text': '18/20', 'is_correct': False},
+                    {'text': '19/20', 'is_correct': False},
                 ]
             },
         ]

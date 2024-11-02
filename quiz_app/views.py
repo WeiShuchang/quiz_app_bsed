@@ -34,7 +34,7 @@ def login_view(request):
                 elif user.userprofile.role == 'student':
                     return redirect('student_dashboard')  # Redirect to student dashboard
                 else:
-                    return redirect('home')  # Fallback redirect
+                    return redirect('login_page')  # Fallback redirect
                 
             else:
                 messages.error(request, 'Invalid username or password.')
@@ -322,3 +322,9 @@ def leaderboard_view(request):
     }
     
     return render(request, 'home/leaderboard.html', context)
+
+def objectives_view(request):
+    return render (request, "home/objectives_page.html")
+
+def aboutus_view(request):
+    return render (request, "home/aboutus_page.html")
