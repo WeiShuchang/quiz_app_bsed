@@ -51,6 +51,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'teacher.middleware.AdminMiddleware',
+    'teacher.middleware.PreventBackHistoryMiddleware',
+    'teacher.middleware.RedirectUnauthenticatedUserMiddleware',
 ]
 
 ROOT_URLCONF = 'quiz_app.urls'
@@ -136,3 +139,6 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.file'
+SESSION_FILE_PATH = os.path.join(BASE_DIR, 'sessions')  # optional: specify a directory for session files

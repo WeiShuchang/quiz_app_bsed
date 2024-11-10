@@ -8,8 +8,15 @@ from .forms import LoginForm, SignupForm
 from django.views.decorators.csrf import csrf_exempt
 from django.db.models import F
 from django.db.models import Case, When, IntegerField, Count
-
+from django.conf import settings
+from django.http import FileResponse
 import random 
+from django.contrib.auth.decorators import login_required
+from datetime import datetime
+import os
+import shutil
+from django.http import HttpResponse
+import sqlite3
 
 def home(request):
     categories = Category.objects.all()
@@ -328,3 +335,78 @@ def objectives_view(request):
 
 def aboutus_view(request):
     return render (request, "home/aboutus_page.html")
+
+
+ 
+def download_db_backup(request):
+    db_path = os.path.join(settings.BASE_DIR, 'db.sqlite3')
+    if os.path.exists(db_path):
+        # Format the date in 'YYYY-MM-DD' format
+        date_str = datetime.now().strftime("%B %d, %Y")
+        filename = f"db_backup_{date_str}.sqlite3"
+        
+        response = FileResponse(open(db_path, 'rb'), content_type='application/x-sqlite3')
+        response['Content-Disposition'] = f'attachment; filename="{filename}"'
+        return response
+    else:
+        return HttpResponse("Database file not found.", status=404)
+
+
+
+def restore_database(request):
+    if request.method == 'POST' and request.FILES.get('db_file'):
+        db_file = request.FILES['db_file']
+        
+        # Confirm file type is correct
+        if not db_file.name.endswith('.sqlite3'):
+            messages.error(request, "Please upload a valid SQLite3 database file (.sqlite3).")
+            return redirect('restore_database')
+
+        # Paths for backup and current database
+        backup_path = os.path.join(settings.BASE_DIR, 'db_backup.sqlite3')
+        current_db_path = os.path.join(settings.BASE_DIR, 'db.sqlite3')
+        temp_db_path = os.path.join(settings.BASE_DIR, 'temp_uploaded_db.sqlite3')
+
+        try:
+            # Save uploaded file temporarily
+            with open(temp_db_path, 'wb+') as temp_db:
+                for chunk in db_file.chunks():
+                    temp_db.write(chunk)
+            
+            # Check table structure in current and uploaded databases
+            def get_table_names(db_path):
+                conn = sqlite3.connect(db_path)
+                cursor = conn.cursor()
+                cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
+                tables = {table[0] for table in cursor.fetchall()}
+                conn.close()
+                return tables
+
+            current_tables = get_table_names(current_db_path)
+            uploaded_tables = get_table_names(temp_db_path)
+            
+            # Verify table structure
+            if current_tables != uploaded_tables:
+                messages.error(request, "The uploaded database does not have the same structure as the current database.")
+                os.remove(temp_db_path)  # Remove temporary uploaded database file
+                return redirect('restore_database')
+
+            # Backup current database
+            if os.path.exists(current_db_path):
+                shutil.copy(current_db_path, backup_path)
+            
+            # Replace current database with uploaded file
+            shutil.move(temp_db_path, current_db_path)
+            messages.success(request, "Database restored successfully!")
+
+        except Exception as e:
+            # Restore from backup if something goes wrong
+            if os.path.exists(backup_path):
+                shutil.copy(backup_path, current_db_path)
+
+            messages.error(request, f"An error occurred while restoring: {str(e)}")
+            return redirect('restore_database')
+
+        return redirect('restore_database')
+
+    return render(request, 'teacher/restore_database.html')

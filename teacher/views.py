@@ -1,14 +1,79 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Category, Quiz, Question, Choice, Game
+from .models import Category, Quiz, Question, Choice, Game, QuizAttempt, GameSession
 from .forms import CategoryForm, QuizForm, EditQuizForm
 from django.contrib import messages,  auth
 from django.http import JsonResponse,  HttpResponseForbidden,  HttpResponseBadRequest
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
+from django.db.models import Case, When, IntegerField, Count
+from django.db.models import F
 
-# Create your views here.
 def teacher_dashboard(request):
-    return render(request, "teacher/teacher_dashboard.html")
+    # Define the custom order for games, if necessary for the teacher's dashboard
+    order = [
+        "Simplifying Fractions Game",
+        "Mixed & Improper Fractions Game",
+        "Adding Fractions Game",
+        "Subtracting Fractions Game",
+        "Multiplying Fractions Game",
+        "Dividing Fractions Game"
+    ]
+
+    # Annotate games with a custom order field
+    games = Game.objects.annotate(
+        custom_order=Case(
+            *[When(name=title, then=index) for index, title in enumerate(order)],
+            output_field=IntegerField()
+        )
+    ).order_by("custom_order")
+
+    # Initialize dictionaries for storing leaderboard-like data for the teacher's dashboard
+    multiple_choice_data = {}
+    type_the_answer_data = {}
+    quiz_data = {}
+
+    # Populate the data for multiple choice and type-the-answer games
+    for game in games:
+        # Multiple Choice Game Data
+        mc_scores = (
+            GameSession.objects
+            .filter(game=game)
+            .values('player_name')
+            .annotate(max_score=F('score'))  # Retain original score
+        )
+        sorted_mc_scores = sorted(mc_scores, key=lambda x: x['max_score'], reverse=True)[:10]
+        multiple_choice_data[game.name] = sorted_mc_scores
+
+        # Type the Answer Game Data
+        ta_scores = (
+            GameSession.objects
+            .filter(game=game)
+            .values('player_name')
+            .annotate(max_score=F('score'))  # Retain original score
+        )
+        sorted_ta_scores = sorted(ta_scores, key=lambda x: x['max_score'], reverse=True)[:10]
+        type_the_answer_data[game.name] = sorted_ta_scores
+
+    # Populate quiz data
+    for quiz in Quiz.objects.all():
+        leaderboard = (
+            QuizAttempt.objects
+            .filter(quiz=quiz)
+            .values('name')
+            .annotate(max_score=F('score'))  # Retain original score
+        )
+        sorted_quiz_scores = sorted(leaderboard, key=lambda x: x['max_score'], reverse=True)[:10]
+        quiz_data[quiz.title] = sorted_quiz_scores
+
+    # Context data to be passed to the template
+    context = {
+        'multiple_choice_data': multiple_choice_data,
+        'type_the_answer_data': type_the_answer_data,
+        'quiz_data': quiz_data,
+    }
+
+    # Render the teacher's dashboard template with the provided context
+    return render(request, 'teacher/teacher_dashboard.html', context)
 
 def category_dashboard(request):
     categories = Category.objects.all()

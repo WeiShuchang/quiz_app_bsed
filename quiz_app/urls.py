@@ -51,7 +51,8 @@ urlpatterns = [
     path('leaderboard/', views.leaderboard_view, name='leaderboard'),
     path('objectives/', views.objectives_view, name='objectives'),
     path('aboutus/', views.aboutus_view, name='aboutus'),
-  
+    path('download-db-backup/', views.download_db_backup, name='download_db_backup'),
+    path('restore_database/', views.restore_database, name='restore_database'),
   
 ]
 

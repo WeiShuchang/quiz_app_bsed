@@ -1,7 +1,131 @@
 {% extends "teacher/base.html" %}
-{% load static %}
 
 {% block content %}
 
 
-{% endblock content %}
+<!-- Multiple Choice Games Data -->
+<div>
+
+    <div class="container mt-2">
+        {% include "messages.html" %}
+        <h2 class="text-center text-primary"><strong>Multiple Choice Games</strong></h2>
+        <div class="row">
+            {% for game_name, data in multiple_choice_data.items %}
+                <div class="col-md-6 table-container">
+                    <div class="game-title">
+                        <h5 class="text-center text-primary">{{ game_name }}</h5>
+                    </div>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Player Name</th>
+                                <th>Score</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for player in data %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ player.player_name }}</td>
+                                    <td>{{ player.max_score }}</td>
+                                </tr>
+                            {% empty %}
+                                <tr>
+                                    <td colspan="3" class="no-scores">No scores available.</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% if forloop.counter|divisibleby:2 %}
+                    </div><div class="row">
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<!-- Type The Answer Games Data -->
+<div>
+    <h2 class="text-center mt-5 text-success"><strong>Type The Answer Games</strong></h2>
+    <div class="container">
+        <div class="row">
+            {% for game_name, data in type_the_answer_data.items %}
+                <div class="col-md-6 table-container">
+                    <div class="game-title">
+                        <h5 class="text-center text-success">{{ game_name }}</h5>
+                    </div>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Player Name</th>
+                                <th>Score</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for player in data %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ player.player_name }}</td>
+                                    <td>{{ player.max_score }}</td>
+                                </tr>
+                            {% empty %}
+                                <tr>
+                                    <td colspan="3" class="no-scores">No scores available.</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% if forloop.counter|divisibleby:2 %}
+                    </div><div class="row">
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<!-- Quiz Attempts Data -->
+<div>
+    <h2 class="text-center mt-5 text-info"><strong>Quiz Attempts</strong></h2>
+    <div class="container">
+        <div class="row">
+            {% for quiz_title, data in quiz_data.items %}
+                <div class="col-md-6 table-container">
+                    <div class="game-title">
+                        <h5 class="text-center text-info">{{ quiz_title }}</h5>
+                    </div>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Player Name</th>
+                                <th>Score</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for player in data %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ player.name }}</td>
+                                    <td>{{ player.max_score }}</td>
+                                </tr>
+                            {% empty %}
+                                <tr>
+                                    <td colspan="3" class="no-scores">No scores available.</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% if forloop.counter|divisibleby:2 %}
+                    </div><div class="row">
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
