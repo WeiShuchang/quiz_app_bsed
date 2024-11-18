@@ -49,7 +49,7 @@
 </style>
 
 <header class="site-header d-flex flex-column justify-content-center align-items-center">
-    <h2 class="text-center pt-5 mt-5"><strong>Converting Mixed Fractions and Improper Fractions</strong></h2>
+    <h2 class="text-center pt-5 mt-5"><strong>Expressing Improper Fractions to Mixed Numbers and Vice Versa</strong></h2>
     <div class="image-placeholder mt-2" style="text-align: center;">
         <img src="{% static 'images/topics/mixed_and_improper.jpg' %}" alt="Mixed and Improper Fractions Image" class="img-fluid img-thumbnail" style="max-width: 300px; height: auto;">
     </div>
@@ -60,95 +60,280 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="lesson-intro">
-                    <h3 class="lesson-title pb-3">What are Mixed Numbers and Improper Fractions?</h3>
+                    <h3 class="lesson-title pb-3">Expressing Improper Fractions to Mixed Numbers and Vice Versa</h3>
                     <p class="lesson-text">
-                        An improper fraction has a numerator that is larger than or equal to its denominator (e.g., 9/4), while a mixed number combines a whole number with a proper fraction (e.g., 2 1/4).
+                        Understanding how to convert between improper fractions and mixed numbers is essential for mastering fraction operations. Let's review the key terms and their definitions.
                     </p>
                 </div>
 
-                <!-- Converting Improper Fractions to Mixed Numbers Section -->
+                <!-- Key Terms Section -->
                 <div class="lesson-steps mt-5">
-                    <h3 class="lesson-title mb-4">Converting Improper Fractions to Mixed Numbers</h3>
+                    <h3 class="lesson-title mb-4">Key Terms:</h3>
                     <ul class="list-group">
                         <li class="list-group-item">
-                            <h6>Step 1: Divide the Numerator by the Denominator.</h6> 
-                            In the example <span class="fraction"><span class="numerator">9</span><span class="denominator">4</span></span>, divide 9 by 4. 
-                            <br><strong>Explanation:</strong> You are seeing how many whole 4's can fit into 9. The answer is 2 (since 4 × 2 = 8), with a remainder of 1.
+                            <h6>Improper Fraction</h6>
+                            
+                            <p>
+                                A fraction where the numerator is greater than or equal to the denominator. 
+                               <br>(
+                                <span class="fraction">
+                                    <i><span class="numerator">a</span>
+                                        <span class="denominator">b</span></i>
+                                </span> , where 
+                          
+                                   a
+                                  &geq;
+                                    b )
+                          
+                            </p>
                         </li>
                         <li class="list-group-item">
-                            <h6>Step 2: Write the Whole Number.</h6> 
-                            The quotient (the result of division) is the whole number part, which is 2 in this case.
-                        </li>
-                        <li class="list-group-item">
-                            <h6>Step 3: Create the Proper Fraction.</h6> 
-                            The remainder becomes the new numerator, and the denominator stays the same. In this case, the remainder is 1, so the fraction becomes <span class="fraction"><span class="numerator">1</span><span class="denominator">4</span></span>.
-                        </li>
-                        <li class="list-group-item">
-                            <h6>Step 4: Combine.</h6> 
-                            Put the whole number and the proper fraction together. The mixed number is 2 <span class="fraction"><span class="numerator">1</span><span class="denominator">4</span></span>.
+                            <h6>Mixed Number</h6>
+                            <p>
+                                A number that combines an integer with a proper fraction. 
+                                <br><i>(
+                                <span class="whole-number">a</span> 
+                                <span class="fraction">
+                                    <span class="numerator">b</span>
+                                    <span class="denominator">c</span>
+                                </span></i> , where 
+                                <span class="whole-number"><i>a</i></span> is the whole number and 
+                                <i>
+                                    <span class="fraction">
+                                        <span class="numerator"> b</span>
+                                        <span class="denominator"> c</span>
+                                     </span> 
+                                </i>
+                                is the proper fraction.
+                                )
+                            </p>
                         </li>
                     </ul>
-
-                    <!-- Example: Converting Improper Fraction to Mixed Number -->
-                    <div class="lesson-examples mt-4">
-                        <h3 class="lesson-title">Example:</h3>
-                        <div class="card mb-3">
-                            <div class="card-body">
-                                <p>Convert <span class="fraction"><span class="numerator">9</span><span class="denominator">4</span></span> to a mixed number:</p>
-                                <ul>
-                                    <li><p><strong>Step 1:</strong> Divide: 9 ÷ 4 = 2 remainder 1.</p></li>
-                                    <li><p><strong>Step 2:</strong> Whole number: 2.</p></li>
-                                    <li><p><strong>Step 3:</strong> Proper fraction: <span class="fraction"><span class="numerator">1</span><span class="denominator">4</span></span>.</p></li>
-                                    <li><p><strong>Step 4:</strong> Mixed number: 2 <span class="fraction"><span class="numerator">1</span><span class="denominator">4</span></span>.</p></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
-                <!-- Converting Mixed Numbers to Improper Fractions Section -->
-                <div class="lesson-steps mt-5">
-                    <h3 class="lesson-title mb-4">Converting Mixed Numbers to Improper Fractions</h3>
+                 <!-- Expressing Improper Fractions to Mixed Numbers Section -->
+                 <div class="lesson-steps mt-5">
+                    <h3 class="lesson-title mb-4">A. Expressing Improper Fractions to Mixed Numbers</h3>
+                    <p>
+                        If <i>
+                            <span class="fraction">
+                                <span class="numerator">a</span>
+                                <span class="denominator">b</span>
+                            </span></i> is an improper fraction, then the mixed number equivalent is 
+                        <i>
+                            <span class="whole-number">a</span> 
+                            <span class="fraction">
+                                <span class="numerator">c</span>
+                                <span class="denominator">d</span>
+                            </span>
+                        </i>, where <i>a</i> is the whole number, <i>c</i> is the remainder, and <i>d</i> is the original denominator.
+                    </p>
+                    <h4 class="lesson-subtitle">Steps to Express:</h4>
                     <ul class="list-group">
                         <li class="list-group-item">
-                            <h6>Step 1: Multiply the Whole Number by the Denominator.</h6> 
-                            In the mixed number 2 <span class="fraction"><span class="numerator">1</span><span class="denominator">4</span></span>, multiply the whole number 2 by the denominator 4. 
-                            <br><strong>Explanation:</strong> 2 × 4 = 8, so you have 8 parts from the whole number.
+                            <h6>1. Divide the Numerator by the Denominator.</h6>
+                            <ul>
+                                <li><p>The quotient becomes the whole number part of the mixed number.</p></li>
+                                <li><p>The remainder becomes the new numerator, while the denominator remains the same.</p></li>
+                            </ul>
                         </li>
                         <li class="list-group-item">
-                            <h6>Step 2: Add the Numerator.</h6> 
-                            Now, add the numerator (1) to the result from Step 1. This gives you 8 + 1 = 9.
-                        </li>
-                        <li class="list-group-item">
-                            <h6>Step 3: Write as an Improper Fraction.</h6> 
-                            The sum (9) becomes the numerator, and the denominator remains the same (4). The improper fraction is <span class="fraction"><span class="numerator">9</span><span class="denominator">4</span></span>.
+                            <h6>2. Combine to Create the Mixed Number.</h6>
                         </li>
                     </ul>
-
-                    <!-- Example: Converting Mixed Number to Improper Fraction -->
-                    <div class="lesson-examples mt-4">
-                        <h3 class="lesson-title">Example:</h3>
-                        <div class="card mb-3">
-                            <div class="card-body">
-                                <p>Convert 2<span class="fraction"><span class="numerator">1</span><span class="denominator">4</span></span> to an improper fraction:</p>
-                                <ul>
-                                    <li><p><strong>Step 1:</strong> Multiply: 2 × 4 = 8.</p></li>
-                                    <li><p><strong>Step 2:</strong> Add: 8 + 1 = 9.</p></li>
-                                    <li><p><strong>Step 3:</strong> Improper fraction: <span class="fraction"><span class="numerator">9</span><span class="denominator">4</span></span>.</p></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
-                <!-- Conclusion Section -->
-                <div class="conclusion mt-5">
-                    <p>Remember to practice converting between mixed numbers and improper fractions. Understanding these conversions will help with more complex fraction operations. In our next lesson, we’ll explore adding and subtracting fractions!</p>
+                   <!-- Example Section -->
+                <div class="lesson-example mt-5">
+                    <h3 class="lesson-title mb-4">Example 1: Express <i>
+                        <span class="fraction">
+                            <span class="numerator">9</span>
+                            <span class="denominator">4</span>
+                        </span></i> to a mixed number.</h3>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <h6>1. Divide the Numerator by the Denominator.</h6>
+                            <p>
+                                Divide <i>9</i> by <i>4</i>: The quotient is <i>2</i> and the remainder is <i>1</i>.
+                            </p>
+                            <img src="{% static 'images/topics/nine_fourth.png' %}" alt="9 divided by 4 example" class="img-fluid mt-3 center" style="max-width: 350px; height: auto;">
+                        </li>
+                        <li class="list-group-item">
+                            <h6>2. Combine to Create the Mixed Number.</h6>
+                            <p>
+                                The mixed number is <i>2</i> 
+                                <i>
+                                    <span class="fraction">
+                                        <span class="numerator">1</span>
+                                        <span class="denominator">4</span>
+                                    </span>
+                                </i>.
+                            </p>
+                        </li>
+                    </ul>
                 </div>
+
+                <h3 class="lesson-title mt-5 mb-4">Example 2: Express <i>
+                    -<span class="fraction">
+                        <span class="numerator">11</span>
+                        <span class="denominator">3</span>
+                    </span></i> to a mixed number.</h3>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <h6>1. Divide the Numerator by the Denominator.</h6>
+                        <p>
+                            Divide <i>-11</i> by <i>3</i>: The quotient is <i>-3</i> and the remainder is <i>2</i>. 
+                            <br>Whole number: <i>-3</i>
+                            <br>Proper fraction: <i>
+                            <span class="fraction">
+                                <span class="numerator">2</span>
+                                <span class="denominator">3</span>
+                            </span></i>
+                        </p>
+                    </li>
+                    <li class="list-group-item">
+                        <h6>2. Combine to Create the Mixed Number.</h6>
+                        <p>
+                            The mixed number is <i>-3</i> 
+                            <i>
+                                <span class="fraction">
+                                    <span class="numerator">2</span>
+                                    <span class="denominator">3</span>
+                                </span>
+                            </i>.
+                        </p>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Expressing Mixed Numbers to Improper Fractions Section -->
+            <div class="lesson-steps mt-5">
+                <h3 class="lesson-title mb-4">B. Expressing Mixed Numbers to Improper Fractions</h3>
+                <p>
+                    If <i>
+                        <span class="whole-number">a</span> 
+                        <span class="fraction">
+                            <span class="numerator">b</span>
+                            <span class="denominator">c</span>
+                        </span>
+                    </i> is a mixed number, then the improper fraction equal to this mixed number is 
+                    <i>
+                        <span class="fraction">
+                            <span class="numerator">ac + b</span>
+                            <span class="denominator">c</span>
+                        </span>
+                    </i>.
+                </p>
+                <h4 class="lesson-subtitle">Steps to Express:</h4>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <h6>1. Multiply the Whole Number by the Denominator.</h6>
+                    </li>
+                    <li class="list-group-item">
+                        <h6>2. Add the Numerator.</h6>
+                    </li>
+                    <li class="list-group-item">
+                        <h6>3. Write as an Improper Fraction.</h6>
+                        <ul>
+                            <li>
+                                <p>The original denominator will be the denominator of the improper fraction.</p>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="lesson-example mt-5">
+                <h3 class="lesson-title mb-4">Example 1: Express <i>
+                    2 <span class="fraction">
+                        <span class="numerator">1</span>
+                        <span class="denominator">8</span>
+                    </span></i> to a mixed number.</h3>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <h6>1. Multiply the Whole Number to the Denominator. </h6>
+                        <ul>
+                            <li>
+                                <p>
+                                    8 (2)= 16
+                                </p>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="list-group-item">
+                        <h6>2. Add the Numerator.</h6>
+                            <ul>
+                                <li><p>16 + 1= 17</p></li>
+                            </ul>
+                        
+                    </li>
+                    <li class="list-group-item">
+                        <h6>3. Write as an improper fraction.</h6>
+                        <ul>
+                            <li>
+                                <p>
+                                    <span class="fraction">
+                                        <span class="numerator">17</span>
+                                        <span class="denominator">8</span>
+                                    </span>
+                                </p>
+                            </li>
+                        </ul>
+                        
+                    </li>
+                </ul>
+            </div>
+
+            <div class="lesson-example mt-5">
+                <h3 class="lesson-title mb-4">Example 2: Express <i>
+                    3 <span class="fraction">
+                        <span class="numerator">2</span>
+                        <span class="denominator">5</span>
+                    </span></i> to an improper fraction.</h3>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <h6>1. Multiply the Whole Number to the Denominator.</h6>
+                        <ul>
+                            <li>
+                                <p>
+                                    -3 (5) = -15
+                                </p>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="list-group-item">
+                        <h6>2. Add the Numerator.</h6>
+                        <ul>
+                            <li><p>-15 + 2 = -13</p></li>
+                        </ul>
+                    </li>
+                    <li class="list-group-item">
+                        <h6>3. Write as an improper fraction.</h6>
+                        <ul>
+                            <li>
+                                <p>
+                                    <span class="fraction">
+                                        <span class="numerator">-13</span>
+                                        <span class="denominator">5</span>
+                                        </span> or - <span class="fraction">
+                                        <span class="numerator">13</span>
+                                        <span class="denominator">5</span>
+                                    </span>
+                                </p>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            
+
+                
             </div>
         </div>
     </div>
 </section>
+
+
 <div class="container mt-5">
     <div class="d-flex justify-content-between align-items-center">
         <!-- Previous Lesson Button -->

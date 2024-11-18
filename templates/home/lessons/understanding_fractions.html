@@ -39,16 +39,23 @@
         padding: 15px;
         font-size: 16px;
     }
-    .lesson-text, p{
-        color:black;
-        font-weight:bold;
+
+    .lesson-text, p {
+        color: black;
+        font-weight: bold;
     }
-   
+
+    .example-centered {
+        text-align: center;
+        font-style: italic;
+        margin: 15px 0;
+        font-size: 1.2em;
+    }
 </style>
 
 <header class="site-header d-flex flex-column justify-content-center align-items-center">
-    <h2 class="text-center  pt-5" >Understanding Fractions</h2>
-    <div class="image-placeholder mt-2" style="text-align: center; ;">
+    <h2 class="text-center pt-5">Understanding Fractions</h2>
+    <div class="image-placeholder mt-2" style="text-align: center;">
         <img src="{% static 'images/topics/fractions1.jpg' %}" alt="Understanding Fractions Image" class="img-fluid img-thumbnail" style="max-width: 300px; height: auto;">
     </div>
 </header>
@@ -62,20 +69,28 @@
                     <p class="lesson-text">
                         A fraction is a numerical representation of a part of a whole. It consists of two numbers separated by a horizontal line called the fraction bar:
                     </p>
+                    <p class="example-centered">
+                        <span class="fraction">
+                            <span class="numerator">a</span>
+                            <span class="denominator">b</span>
+                        </span>
+                    </p>
+                    
                     <ul class="list-group">
                         <li class="list-group-item">
-                            <h6>Numerator:</h6> <strong>The number above the fraction bar, indicating how many parts are being considered.</strong>
+                            <h6>Numerator(a):</h6> <strong>The number above the fraction bar, indicating how many parts are being considered.</strong>
                         </li>
                         <li class="list-group-item">
-                            <h6>Denominator:</h6> <strong>The number below the fraction bar, indicating the total number of equal parts into which the whole is divided.</strong>
+                            <h6>Denominator(b):</h6> <strong>The number below the fraction bar, indicating the total number of equal parts into which the whole is divided.</strong>
                         </li>
                     </ul>
                 </div>
 
+                <!-- Examples Section -->
                 <div class="lesson-examples mt-4">
                     <h3 class="lesson-title">Examples:</h3>
-
-                    <div class="card mb-3" >
+                    <!-- Example 1 -->
+                    <div class="card mb-3">
                         <div class="card-body" style="color: black; font-weight: bold;">
                             <p>In the fraction <span class="fraction"><span class="numerator">3</span><span class="denominator">4</span></span>,</p>
                             <div class="image-placeholder" style="text-align: center; margin: 20px 0;">
@@ -87,84 +102,121 @@
                             </ul>
                         </div>
                     </div>
-                    
 
-                    
-
+                    <!-- Example 2 -->
                     <div class="card mb-3">
                         <div class="card-body">
-                            <p>In the fraction <span class="fraction"><span class="numerator">6</span><span class="denominator">7</span></span>,</p>
+                            <p>In the fraction <span class="fraction"><span class="numerator">7</span><span class="denominator">8</span></span>,</p>
                             <div class="image-placeholder" style="text-align: center; margin: 20px 0;">
-                                <img src="{% static 'images/topics/six_seventh.png' %}" alt="Fraction Example Image" class="img-fluid"  style="max-width: 250px; height: auto;">
+                                <img src="{% static 'images/topics/seventh_eight.png' %}" alt="Fraction Example Image" class="img-fluid" style="max-width: 150px; height: auto;">
                             </div>
                             <ul>
-                                <li><p>The numerator <strong>6</strong> indicates that 6 parts are being considered.</p></li>
-                                <li><p>The denominator <strong>7</strong> indicates that the whole is divided into 7 equal parts.</p></li>
+                                <li><p>The numerator <strong>7</strong> indicates that 7 parts are being considered.</p></li>
+                                <li><p>The denominator <strong>8</strong> indicates that the whole is divided into 8 equal parts.</p></li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
+                <!-- Types of Fractions -->
                 <div class="lesson-types mt-4">
                     <h3 class="lesson-title">Types of Fractions</h3>
 
-                    <div class="image-placeholder" style="text-align: center; margin-bottom: 20px;">
-                        <img src="{% static 'images/topics/types_of_fractions.png' %}" alt="Types of Fractions Image" class="img-fluid" >
-                    </div>
-
+                 
                     <ul class="list-group">
+                   
+                        <!-- Proper Fractions -->
                         <li class="list-group-item">
-                            <h6>Proper Fractions:</h6> 
-                            <p>The numerator is less than the denominator.</p>
-                            <strong><em>Examples:</em></strong> <br>
-                            <p>
-                                <span class="fraction" style="margin-right: 15px;"><span class="numerator">2</span><span class="denominator">5</span></span>
-                                <span class="fraction" style="margin-right: 15px;"><span class="numerator">11</span><span class="denominator">17</span></span>
-                                <span class="fraction" style="margin-right: 15px;"><span class="numerator">3</span><span class="denominator">13</span></span>
-                            </p>
+                          
+                            <h5>A. According to the Relationship Between the Numerator and Denominator</h5>
+                            <ul>
+                                <li>
+                                    <h6>Proper Fractions:</h6>
+                                    <p>The numerator is less than the denominator.</p>
+
+                                    <strong><em>Examples:</em></strong> <br>
+                                    <p>
+                                        <span class="fraction" style="margin-right: 15px;"><span class="numerator">2</span><span class="denominator">5</span></span>,
+                                        <span class="fraction" style="margin-right: 15px;"><span class="numerator">11</span><span class="denominator">17</span></span>,
+                                        - <span class="fraction" style="margin-right: 15px;"><span class="numerator">3</span><span class="denominator">13</span></span>
+                                    </p>
+                                </li>
+                            </ul>
                         </li>
-                        
+                    
+                        <!-- Improper Fractions -->
                         <li class="list-group-item">
-                            <h6>Improper Fractions:</h6> 
-                            <p>The numerator is greater than or equal to the denominator.</p>
-                            <strong><em>Examples:</em></strong> <br>
-                            <p>
-                                <span class="fraction" style="margin-right: 15px;"><span class="numerator">5</span><span class="denominator">5</span></span>
-                                <span class="fraction" style="margin-right: 15px;"><span class="numerator">9</span><span class="denominator">7</span></span>
-                                <span class="fraction" style="margin-right: 15px;"><span class="numerator">25</span><span class="denominator">8</span></span>
-                            </p>
+                            <ul>
+                                <li>
+                                    <h6>Improper Fractions:</h6>
+                                    <p>The numerator is greater than or equal to the denominator.</p>
+                                    <strong><em>Examples:</em></strong> <br>
+                                    <p>
+                                        <span class="fraction" style="margin-right: 15px;"><span class="numerator">3</span><span class="denominator">2</span></span>,
+                                        <span class="fraction" style="margin-right: 15px;"><span class="numerator">9</span><span class="denominator">7</span></span>,
+                                        - <span class="fraction" style="margin-right: 15px;"><span class="numerator">25</span><span class="denominator">8</span></span>
+                                    </p>
+                                </li>
+                            </ul>
                         </li>
-                        
+               
+                        <!-- Similar Fractions -->
                         <li class="list-group-item">
-                            <h6>Mixed Numbers:</h6> 
-                            <p>A whole number combined with a proper fraction.</p>
-                            <strong><em>Examples:</em></strong> <br>
-                            <p>
-                                1 <span class="fraction" style="margin-right: 15px;"><span class="numerator">1</span><span class="denominator">2</span></span>
-                                12 <span class="fraction" style="margin-right: 15px;"><span class="numerator">3</span><span class="denominator">7</span></span>
-                                20 <span class="fraction" style="margin-right: 15px;"><span class="numerator">1</span><span class="denominator">5</span></span>
-                            </p>
+                            <h5>B.According to the Relationship of their Denominators</h5>
+                            <ul>
+                                <li>
+                                    <h6>Similar Fractions:</h6>
+                                    <p>These are fractions that have the <span class="font-weight-bolder">same denominator</span>. They are also known as like fractions.</p>
+                                    <strong><em>Examples:</em></strong> <br>
+                                    <p>
+                                        <span class="fraction" style="margin-right: 15px;"><span class="numerator">1</span><span class="denominator">7</span></span>,
+                                        <span class="fraction" style="margin-right: 15px;"><span class="numerator">3</span><span class="denominator">7</span></span>,
+                                        <span class="fraction" style="margin-right: 15px;"><span class="numerator">5</span><span class="denominator">7</span></span>,
+                                        <span class="fraction" style="margin-right: 15px;"><span class="numerator">6</span><span class="denominator">7</span></span>
+                                    </p>
+                                </li>
+                            </ul>       
                         </li>
-                        
-                        
+                    
+                        <!-- Dissimilar Fractions -->
+                        <li class="list-group-item">
+                            <ul>
+                                <li>
+                                    <h6>Dissimilar Fractions:</h6>
+                                    <p>These fractions have different denominators. They are also referred to as unlike fractions.</p>
+                                    <strong><em>Examples:</em></strong> <br>
+                                    <p>
+                                        <span class="fraction" style="margin-right: 15px;"><span class="numerator">1</span><span class="denominator">3</span></span>,
+                                        <span class="fraction" style="margin-right: 15px;"><span class="numerator">3</span><span class="denominator">7</span></span>,
+                                        <span class="fraction" style="margin-right: 15px;"><span class="numerator">4</span><span class="denominator">9</span></span>,
+                                        <span class="fraction" style="margin-right: 15px;"><span class="numerator">7</span><span class="denominator">11</span></span>
+                                    </p>
+                                </li>
+                            </ul>         
+                        </li>
                     </ul>
+                    
                 </div>
             </div>
         </div>
     </div>
-
-    <div class="container mt-5">
-        <div class="text-end">
-            <a href="{% url 'lesson_detail' 'mixed_and_improper_fractions' %}" class="btn btn-primary">
-                
-                Next Lesson 
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-right-circle mb-1" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"/>
-                  </svg>
-            </a>
-        </div>
-    </div>
-    
 </section>
+
+
+<div class="container mt-5 text-white">
+    <div class="d-flex justify-content-end align-items-center ">
+      
+      
+        <!-- Next Lesson Button -->
+        <a href="{% url 'lesson_detail' 'mixed_and_improper_fractions' %}" class="btn btn-primary ">
+            
+            Next Lesson
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-right-circle mb-1" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"/>
+              </svg>
+        </a>
+    </div>
+</div>
+
 
 {% endblock content %}
