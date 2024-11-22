@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Category, Quiz, Question, Choice, Game, QuizAttempt, GameSession
+from .models import Category, Quiz, Question, Choice, Game, QuizAttempt, GameSession, FractionGameQuestion
 from .forms import CategoryForm, QuizForm, EditQuizForm
 from django.contrib import messages,  auth
 from django.http import JsonResponse,  HttpResponseForbidden,  HttpResponseBadRequest
@@ -216,3 +216,82 @@ def delete_question(request, question_id):
         messages.success(request, 'Question deleted successfully.')
     return redirect('quiz_detail', quiz_id=question.quiz.id)
 
+
+def type_the_answer(request):
+    games = Game.objects.all()
+    return render(request, 'teacher/type_the_answer.html', {'games': games})
+
+def edit_game(request, game_id):
+    game = get_object_or_404(Game, pk=game_id)
+    questions = FractionGameQuestion.objects.filter(game=game)
+    return render(request, 'teacher/edit_game.html', {'game': game, 'questions': questions})
+
+
+
+def update_fraction_question(request, game_id):
+    if request.method == 'POST':
+        game = get_object_or_404(Game, id=game_id)
+        questions = FractionGameQuestion.objects.filter(game=game)
+        
+        for question in questions:
+            text_key = f"question_text_{question.id}"
+            numerator_key = f"numerator_{question.id}"
+            denominator_key = f"denominator_{question.id}"
+            
+            # Check if the keys exist in the POST data
+            if text_key in request.POST and numerator_key in request.POST and denominator_key in request.POST:
+                try:
+                    question_text = request.POST[text_key].strip()
+                    correct_numerator = int(request.POST[numerator_key])
+                    correct_denominator = int(request.POST[denominator_key])
+                    
+                    # Update the question fields
+                    question.text = question_text
+                    question.correct_numerator = correct_numerator
+                    question.correct_denominator = correct_denominator
+                    question.save()
+                
+                except ValueError:
+                    return HttpResponseBadRequest("Invalid input values.")
+        
+        # Redirect back to the edit page after saving
+        messages.success(request, 'Game Successfully Edited.')
+        return redirect('edit_game', game_id=game.id)
+    else:
+        return HttpResponseBadRequest("Invalid request method.")
+    
+
+def multiple_choice_games(request):
+    games = Game.objects.all()  # Fetch all games
+    return render(request, 'teacher/multiple_choice_games.html', {'games': games})
+
+def edit_multiple_choice(request, game_id):
+    game = get_object_or_404(Game, id=game_id)
+    
+    # Filter questions that have at least one associated choice
+    questions = game.questions.filter(game_choices__isnull=False).distinct()
+
+    if request.method == "POST":
+        for question in questions:
+            # Update question text
+            question_text = request.POST.get(f"question_text_{question.id}")
+            if question_text:
+                question.text = question_text
+                question.save()
+
+            # Update choices
+            for choice in question.game_choices.all():
+                choice_text = request.POST.get(f"choice_text_{choice.id}")
+                is_correct = request.POST.get(f"choice_correct_{choice.id}", "off") == "on"
+                if choice_text:
+                    choice.text = choice_text
+                    choice.is_correct = is_correct
+                    choice.save()
+
+        messages.success(request, "Game questions and choices updated successfully!")
+        return redirect('edit_multiple_choice', game_id=game.id)
+
+    return render(request, 'teacher/edit_multiple_choice.html', {
+        'game': game,
+        'questions': questions,
+    })

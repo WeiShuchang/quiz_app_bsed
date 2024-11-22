@@ -16,5 +16,10 @@ urlpatterns = [
     path('quiz/<int:quiz_id>/delete/', views.delete_quiz, name='delete_quiz'),
     path('delete_choice/', views.delete_choice, name='delete_choice'),
     path('delete_question/<int:question_id>/', views.delete_question, name='delete_question'),
+    path('type_the_answer/', views.type_the_answer, name='type_the_answer_gamelist'),
+    path('edit-game/<int:game_id>/', views.edit_game, name='edit_game'),
+    path('update-fraction-question/<int:game_id>/', views.update_fraction_question, name='update_fraction_question'),
+    path('multiple-choice-games/', views.multiple_choice_games, name='multiple_choice_games'),
+    path('edit-multiple-choice/<int:game_id>/', views.edit_multiple_choice, name='edit_multiple_choice'),
     
 ]
